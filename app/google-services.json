@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "829370528016",
+    "project_id": "ensa-market-place-5e6fc",
+    "storage_bucket": "ensa-market-place-5e6fc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:829370528016:android:0a9f970fdb3b6859b53595",
+        "android_client_info": {
+          "package_name": "com.example.ensamarketplace"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "829370528016-fsgrgjlciij6481a4dcb4qu0rfqkdq62.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCKAFBOlPmIuoYgmwlZNI5PXE-a7KLyKKY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "829370528016-fsgrgjlciij6481a4dcb4qu0rfqkdq62.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

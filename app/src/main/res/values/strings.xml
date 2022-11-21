@@ -1,0 +1,25 @@
+<resources>
+
+    <string name="app_name">Ensa Market Place</string>
+
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="auth_email_hint">Adresse email</string>
+    <string name="auth_password_hint">Mot de passe</string>
+    <string name="auth_name_hint">Nom</string>
+    <string name="auth_branch_hint">Veuillez entrer votre branch</string>
+    <string name="auth_phone_hint">Numéro de téléphone</string>
+    <string name="vous_avez_pas_de_compte">Vous n avez pas de compte?</string>
+    <string name="creer_un">Créer un</string>
+    <string name="vous_avez_deja_un_compte">Vous avez déja un compte?</string>
+    <string name="gi">GI</string>
+    <string name="cp">CP</string>
+    <string name="ge">GR</string>
+    <string name="grt">GRT</string>
+    <string name="glm">GLM</string>
+    <string name="elmcs">elmcs</string>
+
+
+</resources>

@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/input"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#00DF1818"
+    android:backgroundTint="#FFFFFF"
+    android:backgroundTintMode="screen"
+    android:foregroundTint="#FFFFFF"
+    tools:context=".LoginActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.496">
+
+        <View
+            android:id="@+id/view2"
+            style="@style/background_container"
+            android:layout_width="149dp"
+            android:layout_height="58dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/rounded_container"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.486"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView3"
+            style="@style/authentication_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat"
+            android:text="@string/register"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toBottomOf="@+id/view2"
+            app:layout_constraintEnd_toEndOf="@+id/view2"
+            app:layout_constraintStart_toStartOf="@+id/view2"
+            app:layout_constraintTop_toTopOf="@+id/view2" />
+
+        <EditText
+            android:id="@+id/emaill"
+            style="@style/input"
+            android:layout_width="340dp"
+            android:layout_height="51dp"
+            android:layout_marginTop="60dp"
+            android:drawableLeft="@drawable/ic_baseline_person_outline_24"
+            android:ems="10"
+            android:hint="@string/auth_email_hint"
+            android:inputType="textEmailAddress"
+            android:textColor="#000000"
+            android:textColorHint="#78909C"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view2" />
+
+        <EditText
+            android:id="@+id/name"
+            style="@style/input"
+            android:layout_width="340dp"
+            android:layout_height="51dp"
+            android:layout_marginTop="20dp"
+            android:drawableLeft="@drawable/ic_baseline_person_outline_24"
+            android:ems="10"
+            android:hint="@string/auth_name_hint"
+            android:inputType="textEmailAddress"
+            android:textColor="#000000"
+            android:textColorHint="#78909C"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/emaill" />
+
+        <EditText
+            android:id="@+id/phone"
+            style="@style/input"
+            android:layout_width="340dp"
+            android:layout_height="51dp"
+            android:layout_marginTop="20dp"
+            android:drawableLeft="@drawable/ic_baseline_phone_iphone_24"
+            android:ems="10"
+            android:hint="@string/auth_phone_hint"
+            android:inputType="phone"
+            android:textColor="#000000"
+            android:textColorHint="#78909C"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/name" />
+
+        <EditText
+            android:id="@+id/password"
+            style="@style/input"
+            android:layout_width="340dp"
+            android:layout_height="51dp"
+            android:layout_marginTop="20dp"
+            android:drawableLeft="@drawable/ic_baseline_lock_24"
+            android:ems="10"
+            android:hint="@string/auth_password_hint"
+            android:inputType="textPassword"
+            android:textColor="#000000"
+            android:textColorHint="@color/gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/branch" />
+
+        <Button
+            android:id="@+id/loginButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:backgroundTint="@color/main_color"
+            android:onClick="register"
+            android:text="@string/register"
+            android:textColor="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/password" />
+
+        <TextView
+            android:id="@+id/registerButton"
+            style="@style/creer_un"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="1dp"
+            android:layout_marginEnd="36dp"
+            android:minHeight="48dp"
+            android:onClick="navigateToLoginPage"
+            android:text="@string/login"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/textView2"
+            app:layout_constraintTop_toTopOf="@+id/textView2" />
+
+        <TextView
+            android:id="@+id/textView2"
+            style="@style/vous_avez_pas_de_compte"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="44dp"
+            android:text="@string/vous_avez_deja_un_compte"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/loginButton" />
+
+        <RadioGroup
+            android:id="@+id/branch"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/phone">
+
+            <RadioButton
+                android:id="@+id/radioButton"
+                style="@style/branch"
+                android:layout_width="65dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/black"
+                android:buttonTint="#EF0000"
+                android:checked="true"
+                android:text="@string/cp"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <RadioButton
+                android:id="@+id/radioButton5"
+                style="@style/branch"
+                android:layout_width="65dp"
+                android:layout_height="wrap_content"
+                android:text="@string/gi"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <RadioButton
+                android:id="@+id/radioButton3"
+                style="@style/branch"
+                android:layout_width="65dp"
+                android:layout_height="wrap_content"
+                android:text="@string/ge"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <RadioButton
+                android:id="@+id/radioButton4"
+                style="@style/branch"
+                android:layout_width="65dp"
+                android:layout_height="wrap_content"
+                android:text="@string/grt"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <RadioButton
+                android:id="@+id/radioButton2"
+                style="@style/branch"
+                android:layout_width="65dp"
+                android:layout_height="wrap_content"
+                android:text="@string/glm"
+                tools:ignore="TouchTargetSizeCheck" />
+
+        </RadioGroup>
+
+        <ProgressBar
+            android:id="@+id/loadingIcon"
+            style="@style/loadingIcon"
+            android:layout_width="102dp"
+            android:layout_height="108dp"
+            android:indeterminateTint="@color/loading_color"
+            android:rotation="6"
+            app:layout_constraintBottom_toBottomOf="@+id/textView2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
