@@ -57,7 +57,8 @@ public class LoginActivity extends AppCompatActivity {
                     new OnSuccessListener<AuthResult>() {
                         @Override
                         public void onSuccess(AuthResult authResult) {
-                            navigateToHomePage();
+                            //navigateToHomePage();
+                            navigateToAddAnnouncementPage();
                         }
                     }
             ).addOnFailureListener(
@@ -108,6 +109,13 @@ public class LoginActivity extends AppCompatActivity {
         Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
     }
+
+    //just fot test-----------
+    public void navigateToAddAnnouncementPage(){
+        Intent intent = new Intent(this, AddNewAnnouncement.class);
+        startActivity(intent);
+    }
+    //-----------
 
     public void enableLoadingAnimation(){
         loadingIcon.setVisibility(View.VISIBLE);
