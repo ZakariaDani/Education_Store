@@ -4,6 +4,15 @@
 
     <string name="login">Login</string>
     <string name="register">Register</string>
+    <string name="add_new_ann">Ajouter une nouvelle annonce</string>
+    <string name="ann_title">Titre</string>
+    <string name="ann_type">Type</string>
+    <string name="ann_fici">Filière ciblée</string>
+    <string name="ann_desc">Description</string>
+    <string name="ann_img">Image</string>
+    <string name="ann_add">Ajouter</string>
+    <string name="ann_serv">Service</string>
+    <string name="ann_prod">Produit</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="auth_email_hint">Adresse email</string>
@@ -13,13 +22,15 @@
     <string name="auth_phone_hint">Numéro de téléphone</string>
     <string name="vous_avez_pas_de_compte">Vous n avez pas de compte?</string>
     <string name="creer_un">Créer un</string>
+    <string name="upload_img">Ajouter une image</string>
     <string name="vous_avez_deja_un_compte">Vous avez déja un compte?</string>
     <string name="gi">GI</string>
     <string name="cp">CP</string>
     <string name="ge">GR</string>
     <string name="grt">GRT</string>
-    <string name="glm">GLM</string>
+    <string name="glm">GIL</string>
     <string name="elmcs">elmcs</string>
-
+    <string name="service">Service</string>
+    <string name="product">Produit</string>
 
 </resources>
