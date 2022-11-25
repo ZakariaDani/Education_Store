@@ -58,7 +58,8 @@ public class LoginActivity extends AppCompatActivity {
                         @Override
                         public void onSuccess(AuthResult authResult) {
                             //navigateToHomePage();
-                            navigateToAddAnnouncementPage();
+                            navigateToListAnnouncementsPage();
+                            //navigateToAddAnnouncementPage();
                         }
                     }
             ).addOnFailureListener(
@@ -113,6 +114,10 @@ public class LoginActivity extends AppCompatActivity {
     //just fot test-----------
     public void navigateToAddAnnouncementPage(){
         Intent intent = new Intent(this, AddNewAnnouncement.class);
+        startActivity(intent);
+    }
+    public void navigateToListAnnouncementsPage(){
+        Intent intent = new Intent(this, ListAnnouncements.class);
         startActivity(intent);
     }
     //-----------

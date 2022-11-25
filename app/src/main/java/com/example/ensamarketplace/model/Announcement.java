@@ -1,5 +1,7 @@
 package com.example.ensamarketplace.model;
 
+import com.example.ensamarketplace.R;
+
 public class Announcement {
     String titre;
     String type;
@@ -8,7 +10,8 @@ public class Announcement {
     String phone;
     String description;
     String userOwner;
-
+    int avatar;
+    public Announcement(){}
     public Announcement(String titre, String type, String image, String branch, String phone, String description, String userOwner) {
         this.titre = titre;
         this.type = type;
@@ -17,6 +20,15 @@ public class Announcement {
         this.phone = phone;
         this.description = description;
         this.userOwner = userOwner;
+        this.avatar = R.drawable.avatar;
+    }
+
+    public int getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(int avatar) {
+        this.avatar = avatar;
     }
 
     public String getTitre() {
