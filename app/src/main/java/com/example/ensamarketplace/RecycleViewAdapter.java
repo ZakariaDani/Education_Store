@@ -17,11 +17,11 @@ import com.example.ensamarketplace.model.Announcement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecycleViewAdapter  extends RecyclerView.Adapter<RecycleViewAdapter.MyViewHolder>  implements Filterable {
-    private List<Announcement> allAnnouncements;
-    private List<Announcement> filteredAnnouncements;
+public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.MyViewHolder> implements Filterable {
+    private final List<Announcement> allAnnouncements;
+    private final List<Announcement> filteredAnnouncements;
 
-    RecycleViewAdapter(List<Announcement> announcements){
+    RecycleViewAdapter(List<Announcement> announcements) {
         this.allAnnouncements = announcements;
         filteredAnnouncements = new ArrayList<>(announcements);
     }
@@ -29,7 +29,8 @@ public class RecycleViewAdapter  extends RecyclerView.Adapter<RecycleViewAdapter
     @NonNull
     @Override
     public RecycleViewAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_announcement,parent,false);
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.activity_announcement, parent, false);
         return new MyViewHolder(view);
     }
 
@@ -39,6 +40,7 @@ public class RecycleViewAdapter  extends RecyclerView.Adapter<RecycleViewAdapter
         holder.title.setText(announcement.getTitre());
         holder.image.setBackgroundResource(announcement.getAvatar());
     }
+
     @Override
     public int getItemCount() {
         return allAnnouncements.size();
@@ -48,7 +50,8 @@ public class RecycleViewAdapter  extends RecyclerView.Adapter<RecycleViewAdapter
     public Filter getFilter() {
         return myFilter;
     }
-    private Filter myFilter = new Filter() {
+
+    private final Filter myFilter = new Filter() {
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
             List<Announcement> filteredList = new ArrayList<>();
@@ -66,6 +69,7 @@ public class RecycleViewAdapter  extends RecyclerView.Adapter<RecycleViewAdapter
             results.values = filteredList;
             return results;
         }
+
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
             filteredAnnouncements.clear();
@@ -74,10 +78,11 @@ public class RecycleViewAdapter  extends RecyclerView.Adapter<RecycleViewAdapter
         }
     };
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
-        private TextView title;
-        private ImageView image;
-        private CardView cardView;
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
+        private final TextView title;
+        private final ImageView image;
+        private final CardView cardView;
+
         public MyViewHolder(View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.title);
