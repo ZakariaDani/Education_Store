@@ -29,12 +29,13 @@ public class AddNewAnnouncementActivity extends AppCompatActivity {
     EditText titre;
     EditText phone;
     EditText description;
+    EditText price;
     RadioGroup branch;
     ProgressBar loadingIcon;
     Switch serviceSwitch;
     User user;
     ImageView uploadImage;
-    String titreInput, phoneInput, descriptionInput, typeInput="produit", branchInput, imageInput;
+    String titreInput, phoneInput, descriptionInput, priceInput, typeInput="produit", branchInput, imageInput;
     private final FirebaseFirestore firestore = FirebaseFirestore.getInstance();
     private final FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     private final int GALLERY_REQ_CODE = 1000;
@@ -51,10 +52,15 @@ public class AddNewAnnouncementActivity extends AppCompatActivity {
         titre = findViewById(R.id.titre);
         phone = findViewById(R.id.phone);
         branch = findViewById(R.id.branch);
+        price = findViewById(R.id.price);
         description = findViewById(R.id.description);
         loadingIcon = findViewById(R.id.loadingIcon);
         serviceSwitch = findViewById(R.id.switchService);
         uploadImage = findViewById(R.id.uploadImage);
+        serviceSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            typeInput = isChecked ? "service":"produit";
+            System.out.println(isChecked);
+        });
         user = getConnectedUser();
     }
 
@@ -77,19 +83,16 @@ public class AddNewAnnouncementActivity extends AppCompatActivity {
 
 
     public void addNewAnnouncement(View view) {
-        serviceSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            typeInput = isChecked ? "service":"produit";
-            System.out.println(isChecked);
-        });
         titreInput = titre.getText().toString();
         phoneInput = phone.getText().toString();
         descriptionInput = description.getText().toString();
+        priceInput = price.getText().toString();
         RadioButton radio = findViewById(branch.getCheckedRadioButtonId());
         branchInput = radio.getText().toString();
         boolean validateForm = validateForm();
         if(validateForm){
             enableLoadingAnimation();
-            Announcement announcement = new Announcement(titreInput, typeInput, imageInput, branchInput, phoneInput, descriptionInput, firebaseAuth.getCurrentUser().getUid());
+            Announcement announcement = new Announcement(titreInput, typeInput, imageInput, branchInput, phoneInput, descriptionInput, priceInput, firebaseAuth.getCurrentUser().getUid());
             System.out.println(announcement);
             saveAnnouncement(announcement);
         }
