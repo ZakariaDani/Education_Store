@@ -36,5 +36,6 @@
     <string name="elmcs">elmcs</string>
     <string name="service">Service</string>
     <string name="product">Produit</string>
+    <string name="avatar">avatar</string>
 
 </resources>
