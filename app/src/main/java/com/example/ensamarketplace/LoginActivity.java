@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.method.HideReturnsTransformationMethod;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -113,7 +112,7 @@ public class LoginActivity extends AppCompatActivity {
 
     //just fot test-----------
     public void navigateToAddAnnouncementPage(){
-        Intent intent = new Intent(this, AddNewAnnouncement.class);
+        Intent intent = new Intent(this, EditProfileActivity.class);
         startActivity(intent);
     }
     public void navigateToListAnnouncementsPage(){

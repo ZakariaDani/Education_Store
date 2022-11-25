@@ -9,16 +9,19 @@ public class Announcement {
     String branch;
     String phone;
     String description;
+    String price;
     String userOwner;
     int avatar;
     public Announcement(){}
-    public Announcement(String titre, String type, String image, String branch, String phone, String description, String userOwner) {
+
+    public Announcement(String titre, String type, String image, String branch, String phone, String description, String price, String userOwner) {
         this.titre = titre;
         this.type = type;
         this.image = image;
         this.branch = branch;
         this.phone = phone;
         this.description = description;
+        this.price = price;
         this.userOwner = userOwner;
         this.avatar = R.drawable.avatar;
     }
@@ -85,6 +88,14 @@ public class Announcement {
 
     public void setUserOwner(String userOwner) {
         this.userOwner = userOwner;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
     }
 
     @Override

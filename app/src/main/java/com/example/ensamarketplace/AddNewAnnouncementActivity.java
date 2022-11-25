@@ -1,13 +1,10 @@
 package com.example.ensamarketplace;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -16,32 +13,29 @@ import android.widget.RadioGroup;
 import android.widget.Switch;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ensamarketplace.model.Announcement;
 import com.example.ensamarketplace.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class AddNewAnnouncement extends AppCompatActivity {
+public class AddNewAnnouncementActivity extends AppCompatActivity {
     EditText titre;
     EditText phone;
     EditText description;
+    EditText price;
     RadioGroup branch;
     ProgressBar loadingIcon;
     Switch serviceSwitch;
     User user;
     ImageView uploadImage;
-    String titreInput, phoneInput, descriptionInput, typeInput="produit", branchInput, imageInput;
+    String titreInput, phoneInput, descriptionInput, priceInput, typeInput="produit", branchInput, imageInput;
     private final FirebaseFirestore firestore = FirebaseFirestore.getInstance();
     private final FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     private final int GALLERY_REQ_CODE = 1000;
@@ -56,12 +50,17 @@ public class AddNewAnnouncement extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.activity_add_new_announcement);
         titre = findViewById(R.id.titre);
-        phone =(EditText) findViewById(R.id.phone);
+        phone = findViewById(R.id.phone);
         branch = findViewById(R.id.branch);
+        price = findViewById(R.id.price);
         description = findViewById(R.id.description);
         loadingIcon = findViewById(R.id.loadingIcon);
         serviceSwitch = findViewById(R.id.switchService);
         uploadImage = findViewById(R.id.uploadImage);
+        serviceSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            typeInput = isChecked ? "service":"produit";
+            System.out.println(isChecked);
+        });
         user = getConnectedUser();
     }
 
@@ -84,21 +83,18 @@ public class AddNewAnnouncement extends AppCompatActivity {
 
 
     public void addNewAnnouncement(View view) {
-        serviceSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            typeInput = isChecked ? "service":"produit";
-            System.out.println(isChecked);
-        });
         titreInput = titre.getText().toString();
         phoneInput = phone.getText().toString();
         descriptionInput = description.getText().toString();
+        priceInput = price.getText().toString();
         RadioButton radio = findViewById(branch.getCheckedRadioButtonId());
         branchInput = radio.getText().toString();
         boolean validateForm = validateForm();
         if(validateForm){
             enableLoadingAnimation();
-            Announcement announcement = new Announcement(titreInput, typeInput, imageInput, branchInput, phoneInput, descriptionInput, firebaseAuth.getCurrentUser().getUid());
+            Announcement announcement = new Announcement(titreInput, typeInput, imageInput, branchInput, phoneInput, descriptionInput, priceInput, firebaseAuth.getCurrentUser().getUid());
             System.out.println(announcement);
-            //saveAnnouncement(announcement);
+            saveAnnouncement(announcement);
         }
 
 

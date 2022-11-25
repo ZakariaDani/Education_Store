@@ -4,6 +4,10 @@
 
     <string name="login">Login</string>
     <string name="register">Register</string>
+    <string name="edit">Modifier le profil</string>
+    <string name="add_img">Ajouter une image</string>
+    <string name="price">Prix</string>
+    <string name="save">Sauvegarder</string>
     <string name="add_new_ann">Ajouter une nouvelle annonce</string>
     <string name="ann_title">Titre</string>
     <string name="ann_type">Type</string>
