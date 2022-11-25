@@ -38,6 +38,8 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
     public void onBindViewHolder(RecycleViewAdapter.MyViewHolder holder, final int position) {
         final Announcement announcement = allAnnouncements.get(position);
         holder.title.setText(announcement.getTitre());
+        holder.branchName.setText(announcement.getBranch());
+        holder.phone.setText(announcement.getPhone());
         holder.image.setBackgroundResource(announcement.getAvatar());
     }
 
@@ -80,12 +82,16 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         private final TextView title;
+        private final TextView branchName;
+        private final TextView phone;
         private final ImageView image;
         private final CardView cardView;
 
         public MyViewHolder(View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.title);
+            branchName = itemView.findViewById(R.id.branchName);
+            phone = itemView.findViewById(R.id.phone);
             image = itemView.findViewById(R.id.image);
             cardView = itemView.findViewById(R.id.carView);
         }
