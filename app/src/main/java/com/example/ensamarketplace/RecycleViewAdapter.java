@@ -1,5 +1,6 @@
 package com.example.ensamarketplace;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +18,7 @@ import com.example.ensamarketplace.model.Announcement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.MyViewHolder> implements Filterable {
+public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.MyViewHolder> implements Filterable{
     private final List<Announcement> allAnnouncements;
     private final List<Announcement> filteredAnnouncements;
 
@@ -36,16 +37,16 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
 
     @Override
     public void onBindViewHolder(RecycleViewAdapter.MyViewHolder holder, final int position) {
-        final Announcement announcement = allAnnouncements.get(position);
+        final Announcement announcement = filteredAnnouncements.get(position);
         holder.title.setText(announcement.getTitre());
-        holder.branchName.setText(announcement.getBranch());
-        holder.phone.setText(announcement.getPhone());
-        holder.image.setBackgroundResource(announcement.getAvatar());
+        holder.price.setText(announcement.getPrice() + "DHS");
+        holder.image.setBackgroundResource(R.drawable.no_image);
+        holder.cardView.setId(announcement.getId());
     }
 
     @Override
     public int getItemCount() {
-        return allAnnouncements.size();
+        return filteredAnnouncements.size();
     }
 
     @Override
@@ -57,11 +58,11 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
             List<Announcement> filteredList = new ArrayList<>();
-            if (constraint == null || constraint.length() == 0) {
-                filteredList.addAll(filteredAnnouncements);
+            if (constraint == null || constraint.toString().length() == 0) {
+                filteredList.addAll(allAnnouncements);
             } else {
                 String filterPattern = constraint.toString().toLowerCase().trim();
-                for (Announcement item : filteredAnnouncements) {
+                for (Announcement item : allAnnouncements) {
                     if (item.getTitre().toLowerCase().contains(filterPattern)) {
                         filteredList.add(item);
                     }
@@ -72,26 +73,25 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
             return results;
         }
 
+        @SuppressLint("NotifyDataSetChanged")
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
             filteredAnnouncements.clear();
-            filteredAnnouncements.addAll((List) results.values);
+            filteredAnnouncements.addAll((ArrayList<Announcement>) results.values);
             notifyDataSetChanged();
         }
     };
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         private final TextView title;
-        private final TextView branchName;
-        private final TextView phone;
+        private final TextView price;
         private final ImageView image;
         private final CardView cardView;
 
         public MyViewHolder(View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.title);
-            branchName = itemView.findViewById(R.id.branchName);
-            phone = itemView.findViewById(R.id.phone);
+            price = itemView.findViewById(R.id.price);
             image = itemView.findViewById(R.id.image);
             cardView = itemView.findViewById(R.id.carView);
         }
