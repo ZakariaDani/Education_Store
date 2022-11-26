@@ -1,6 +1,10 @@
 package com.example.ensamarketplace;
 
 import android.annotation.SuppressLint;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
+import android.os.StrictMode;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +19,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ensamarketplace.model.Announcement;
 
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,11 +47,16 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
     @Override
     public void onBindViewHolder(RecycleViewAdapter.MyViewHolder holder, final int position) {
         final Announcement announcement = filteredAnnouncements.get(position);
+        if(announcement.getImage() != null) {
+            setImageFromUri(holder, announcement);
+        }else {
+            holder.image.setBackgroundResource(R.drawable.no_image);
+        }
         holder.title.setText(announcement.getTitre());
         holder.price.setText(announcement.getPrice() + "DHS");
-        holder.image.setBackgroundResource(R.drawable.no_image);
         holder.cardView.setId(announcement.getId());
     }
+
 
     @Override
     public int getItemCount() {
@@ -94,6 +108,25 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
             price = itemView.findViewById(R.id.price);
             image = itemView.findViewById(R.id.image);
             cardView = itemView.findViewById(R.id.carView);
+        }
+    }
+
+    private void setImageFromUri(MyViewHolder holder, Announcement announcement) {
+        try {
+            int SDK_INT = android.os.Build.VERSION.SDK_INT;
+            if (SDK_INT > 8) {
+                StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+                        .permitAll().build();
+                StrictMode.setThreadPolicy(policy);
+                InputStream in = new URL(announcement.getImage()).openStream();
+                Bitmap bitmap = BitmapFactory.decodeStream(in);
+                holder.image.setImageBitmap(bitmap);
+            } else {
+                holder.image.setBackgroundResource(R.drawable.no_image);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            holder.image.setBackgroundResource(R.drawable.no_image);
         }
     }
 }
