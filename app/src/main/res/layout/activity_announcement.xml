@@ -9,7 +9,6 @@
     android:layout_margin="8dp"
     cardView:cardCornerRadius="8dp"
     cardView:cardElevation="8dp"
-    android:onClick="goToAnnounceDetails"
     >
 
 
