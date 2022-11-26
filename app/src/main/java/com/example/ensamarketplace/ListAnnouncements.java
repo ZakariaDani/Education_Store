@@ -4,13 +4,13 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
-import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
-import androidx.appcompat.widget.SearchView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -37,14 +37,10 @@ public class ListAnnouncements extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        this.getWindow().setFlags(
-                WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        getSupportActionBar().hide();
 
         setContentView(R.layout.activity_list_announcements);
 
         prepareAnnouncements();
-        setupRecycleView();
     }
 
     @Override
@@ -69,6 +65,10 @@ public class ListAnnouncements extends AppCompatActivity {
         return true;
     }
 
+    public void goToAnnounceDetails(View view) {
+        System.out.println("detail page");
+    }
+
     private void setupRecycleView() {
         recyclerView = findViewById(R.id.recyclerView);
         layoutManager = new LinearLayoutManager(this);
@@ -82,37 +82,11 @@ public class ListAnnouncements extends AppCompatActivity {
     private void prepareAnnouncements() {
         firestore.collection("Announcement").
                 get()
-                .addOnSuccessListener(queryDocumentSnapshots -> updateData(queryDocumentSnapshots))
-                .addOnFailureListener(e -> showMessage("Fail to get the data."));
-
-        /*
-        Announcement announcement1 = new Announcement();
-        announcement1.setTitre("Cours cp1");
-        Announcement announcement2 = new Announcement();
-        announcement2.setTitre("Cours cp1");
-        Announcement announcement3 = new Announcement();
-        announcement3.setTitre("Cours cp1");
-        Announcement announcement4 = new Announcement();
-        announcement4.setTitre("Cours cp1");
-        Announcement announcement5 = new Announcement();
-        announcement5.setTitre("Cours cp1");
-        Announcement announcement6 = new Announcement();
-        announcement6.setTitre("Cours cp1");
-        Announcement announcement7 = new Announcement();
-        announcement7.setTitre("Cours cp1");
-        Announcement announcement8 = new Announcement();
-        announcement8.setTitre("Cours cp1");
-        Announcement announcement9 = new Announcement();
-        announcement9.setTitre("Cours cp1");
-        announcements.add(announcement1);
-        announcements.add(announcement2);
-        announcements.add(announcement3);
-        announcements.add(announcement4);
-        announcements.add(announcement5);
-        announcements.add(announcement6);
-        announcements.add(announcement7);
-        announcements.add(announcement8);
-        announcements.add(announcement9);*/
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    updateData(queryDocumentSnapshots);
+                    setupRecycleView();
+                })
+                .addOnFailureListener(e -> showMessage("Echec"));
     }
 
     private void updateData(QuerySnapshot queryDocumentSnapshots) {
@@ -122,7 +96,7 @@ public class ListAnnouncements extends AppCompatActivity {
                     .map(d -> d.toObject(Announcement.class))
                     .collect(Collectors.toList());
         } else {
-            showMessage("No data found in Database");
+            showMessage("Aucune donnée trouvée dans la base de données");
         }
     }
 

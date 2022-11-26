@@ -57,8 +57,8 @@ public class LoginActivity extends AppCompatActivity {
                         @Override
                         public void onSuccess(AuthResult authResult) {
                             //navigateToHomePage();
-                            //navigateToListAnnouncementsPage();
-                            navigateToAddAnnouncementPage();
+                            navigateToListAnnouncementsPage();
+                            //navigateToAddAnnouncementPage();
                         }
                     }
             ).addOnFailureListener(
