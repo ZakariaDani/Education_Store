@@ -31,7 +31,6 @@ public class Announcement {
         this.id = id;
     }
 
-
     public String getTitre() {
         return titre;
     }
