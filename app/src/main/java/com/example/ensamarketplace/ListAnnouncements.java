@@ -1,5 +1,8 @@
 package com.example.ensamarketplace;
 
+import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -9,6 +12,7 @@ import android.view.Window;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Toast;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -38,6 +42,8 @@ public class ListAnnouncements extends AppCompatActivity {
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
+        updateActionBarStyles();
+
         setContentView(R.layout.activity_list_announcements);
 
         prepareAnnouncements();
@@ -65,8 +71,11 @@ public class ListAnnouncements extends AppCompatActivity {
         return true;
     }
 
-    public void goToAnnounceDetails(View view) {
-        System.out.println("detail page");
+    private void updateActionBarStyles() {
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("Liste des annonces");
+        ColorDrawable colorDrawable = new ColorDrawable(getResources().getColor(R.color.main_color));
+        actionBar.setBackgroundDrawable(colorDrawable);
     }
 
     private void setupRecycleView() {

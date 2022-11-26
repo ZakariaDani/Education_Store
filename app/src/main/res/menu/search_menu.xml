@@ -4,12 +4,12 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     >
     <item
         android:id="@+id/actionSearch"
         android:icon="@android:drawable/ic_menu_search"
         android:title="Search"
-
         app:actionViewClass="androidx.appcompat.widget.SearchView"
         app:showAsAction="ifRoom|collapseActionView"
         />
