@@ -78,9 +78,6 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
         protected void publishResults(CharSequence constraint, FilterResults results) {
             filteredAnnouncements.clear();
             filteredAnnouncements.addAll((ArrayList<Announcement>) results.values);
-            System.out.println("***********************************************");
-            System.out.println(filteredAnnouncements);
-            System.out.println("***********************************************");
             notifyDataSetChanged();
         }
     };

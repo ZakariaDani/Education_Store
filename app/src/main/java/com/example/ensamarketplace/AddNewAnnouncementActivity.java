@@ -1,5 +1,6 @@
 package com.example.ensamarketplace;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.RadioGroup;
 import android.widget.Switch;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -20,12 +22,16 @@ import com.example.ensamarketplace.model.Announcement;
 import com.example.ensamarketplace.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
+import java.util.UUID;
 
 public class AddNewAnnouncementActivity extends AppCompatActivity {
     EditText titre;
@@ -35,13 +41,14 @@ public class AddNewAnnouncementActivity extends AppCompatActivity {
     RadioGroup branch;
     ProgressBar loadingIcon;
     Switch serviceSwitch;
-    User user;
     ImageView uploadImage;
+    Uri imageUri;
     String titreInput, phoneInput, descriptionInput, priceInput, typeInput="produit", branchInput, imageInput;
     private final FirebaseFirestore fireStore = FirebaseFirestore.getInstance();
-    private final StorageReference fireStoreCloud = FirebaseStorage.getInstance().getReference();
+    private final FirebaseStorage firebaseStorage= FirebaseStorage.getInstance();
     private final FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     private final int GALLERY_REQ_CODE = 1000;
+    User user = new User();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,30 +71,25 @@ public class AddNewAnnouncementActivity extends AppCompatActivity {
             typeInput = isChecked ? "service":"produit";
             System.out.println(isChecked);
         });
-        user = getConnectedUser();
+        getConnectedUser();
     }
 
-    public void uploadImage(View view) {
+    public void getImageFromGallery(View view) {
         Intent iGallery = new Intent(Intent.ACTION_PICK);
-        iGallery.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        iGallery.setType("image/*");
+        iGallery.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(iGallery, GALLERY_REQ_CODE);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode==RESULT_OK) {
-            if(requestCode == GALLERY_REQ_CODE) {
+        if(resultCode==RESULT_OK &&requestCode == GALLERY_REQ_CODE
+           &&data!=null &&data.getData()!=null) {
                 uploadImage.setImageURI(data.getData());
-                fireStoreCloud.putFile(data.getData()).addOnCompleteListener(listener -> {
-                    System.out.println(listener.getResult().getUploadSessionUri().toString());
-                    imageInput = listener.getResult().getUploadSessionUri().toString();
-                });
-
-            }
+                imageUri = data.getData();
         }
     }
-
 
     public void addNewAnnouncement(View view) {
         titreInput = titre.getText().toString();
@@ -99,9 +101,25 @@ public class AddNewAnnouncementActivity extends AppCompatActivity {
         boolean validateForm = validateForm();
         if(validateForm){
             enableLoadingAnimation();
-            Announcement announcement = new Announcement(titreInput, typeInput, imageInput, branchInput, phoneInput, descriptionInput, priceInput, firebaseAuth.getCurrentUser().getUid());
-            System.out.println(announcement);
-            saveAnnouncement(announcement);
+            String randomUid = UUID.randomUUID().toString();
+            StorageReference cloudStorage = firebaseStorage.getReference().child("images/"+randomUid);
+            cloudStorage.putFile(imageUri).addOnSuccessListener(
+                    taskSnapshot -> cloudStorage.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            Uri downloadUrl = uri;
+                            imageInput = downloadUrl.toString();
+                            Announcement announcement = new Announcement(titreInput, typeInput, imageInput,
+                                    branchInput, phoneInput, descriptionInput,
+                                    priceInput, firebaseAuth.getCurrentUser().getUid());
+
+                            saveAnnouncement(announcement);
+                        }
+                    })
+            ).addOnCompleteListener(
+                    listener->disableLoadingAnimation()
+            );
+
         }
 
 
@@ -131,10 +149,9 @@ public class AddNewAnnouncementActivity extends AppCompatActivity {
         else{
             validForm = true;
         }
-        return validForm;
+        return true;
     }
-    public User getConnectedUser() {
-        User user = new User();
+    public void getConnectedUser() {
         DocumentReference docRef = fireStore.collection("Users").document(firebaseAuth.getCurrentUser().getUid());
         docRef.get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
@@ -153,7 +170,6 @@ public class AddNewAnnouncementActivity extends AppCompatActivity {
                 System.out.println("get failed with "+ task.getException());
             }
         });
-        return user;
     }
     public void showMessage(String errorMessage){
         Toast.makeText(this,errorMessage,Toast.LENGTH_SHORT).show();

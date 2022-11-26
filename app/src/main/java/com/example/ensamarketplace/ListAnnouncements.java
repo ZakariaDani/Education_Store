@@ -7,12 +7,11 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
-import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
-import androidx.appcompat.widget.SearchView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -68,7 +67,7 @@ public class ListAnnouncements extends AppCompatActivity {
     }
 
     public void goToAnnounceDetails(View view) {
-       System.out.println("detail page");
+        System.out.println("detail page");
     }
 
     private void setupRecycleView() {
@@ -89,35 +88,6 @@ public class ListAnnouncements extends AppCompatActivity {
                     setupRecycleView();
                 })
                 .addOnFailureListener(e -> showMessage("Echec"));
-
-        /*
-        Announcement announcement1 = new Announcement();
-        announcement1.setTitre("Cours cp1");
-        Announcement announcement2 = new Announcement();
-        announcement2.setTitre("Cours cp1");
-        Announcement announcement3 = new Announcement();
-        announcement3.setTitre("Cours cp1");
-        Announcement announcement4 = new Announcement();
-        announcement4.setTitre("Cours cp1");
-        Announcement announcement5 = new Announcement();
-        announcement5.setTitre("Cours cp1");
-        Announcement announcement6 = new Announcement();
-        announcement6.setTitre("Cours cp1");
-        Announcement announcement7 = new Announcement();
-        announcement7.setTitre("Cours cp1");
-        Announcement announcement8 = new Announcement();
-        announcement8.setTitre("Cours cp1");
-        Announcement announcement9 = new Announcement();
-        announcement9.setTitre("Cours cp1");
-        announcements.add(announcement1);
-        announcements.add(announcement2);
-        announcements.add(announcement3);
-        announcements.add(announcement4);
-        announcements.add(announcement5);
-        announcements.add(announcement6);
-        announcements.add(announcement7);
-        announcements.add(announcement8);
-        announcements.add(announcement9);*/
     }
 
     private void updateData(QuerySnapshot queryDocumentSnapshots) {

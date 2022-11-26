@@ -1,18 +1,15 @@
 package com.example.ensamarketplace.model;
 
-import com.example.ensamarketplace.R;
-
 public class Announcement {
-    String titre;
-    String type;
-    String image;
-    String branch;
-    String phone;
-    String description;
-    String price;
-    String userOwner;
-    int avatar;
-    int id;
+    private String titre;
+    private String type;
+    private String image;
+    private String branch;
+    private String phone;
+    private String description;
+    private String price;
+    private String userOwner;
+    private int id;
     public Announcement(){}
 
     public Announcement(String titre, String type, String image, String branch, String phone, String description, String price, String userOwner) {
@@ -24,7 +21,6 @@ public class Announcement {
         this.description = description;
         this.price = price;
         this.userOwner = userOwner;
-        this.avatar = R.drawable.avatar;
     }
 
     public int getId() {
@@ -33,14 +29,6 @@ public class Announcement {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getAvatar() {
-        return avatar;
-    }
-
-    public void setAvatar(int avatar) {
-        this.avatar = avatar;
     }
 
     public String getTitre() {
