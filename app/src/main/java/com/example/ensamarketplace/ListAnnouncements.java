@@ -1,9 +1,11 @@
 package com.example.ensamarketplace;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
@@ -37,14 +39,10 @@ public class ListAnnouncements extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        this.getWindow().setFlags(
-                WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        getSupportActionBar().hide();
 
         setContentView(R.layout.activity_list_announcements);
 
         prepareAnnouncements();
-        setupRecycleView();
     }
 
     @Override
@@ -69,6 +67,10 @@ public class ListAnnouncements extends AppCompatActivity {
         return true;
     }
 
+    public void goToAnnounceDetails(View view) {
+       System.out.println("detail page");
+    }
+
     private void setupRecycleView() {
         recyclerView = findViewById(R.id.recyclerView);
         layoutManager = new LinearLayoutManager(this);
@@ -82,8 +84,11 @@ public class ListAnnouncements extends AppCompatActivity {
     private void prepareAnnouncements() {
         firestore.collection("Announcement").
                 get()
-                .addOnSuccessListener(queryDocumentSnapshots -> updateData(queryDocumentSnapshots))
-                .addOnFailureListener(e -> showMessage("Fail to get the data."));
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    updateData(queryDocumentSnapshots);
+                    setupRecycleView();
+                })
+                .addOnFailureListener(e -> showMessage("Echec"));
 
         /*
         Announcement announcement1 = new Announcement();
@@ -122,7 +127,7 @@ public class ListAnnouncements extends AppCompatActivity {
                     .map(d -> d.toObject(Announcement.class))
                     .collect(Collectors.toList());
         } else {
-            showMessage("No data found in Database");
+            showMessage("Aucune donnée trouvée dans la base de données");
         }
     }
 

@@ -12,6 +12,7 @@ public class Announcement {
     String price;
     String userOwner;
     int avatar;
+    int id;
     public Announcement(){}
 
     public Announcement(String titre, String type, String image, String branch, String phone, String description, String price, String userOwner) {
@@ -24,6 +25,14 @@ public class Announcement {
         this.price = price;
         this.userOwner = userOwner;
         this.avatar = R.drawable.avatar;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getAvatar() {
