@@ -37,7 +37,6 @@
             android:textSize="18sp"
             android:fontFamily="@font/montserrat"
             android:textStyle="bold" />
-
         <TextView
             android:id="@+id/price"
             android:layout_width="match_parent"
