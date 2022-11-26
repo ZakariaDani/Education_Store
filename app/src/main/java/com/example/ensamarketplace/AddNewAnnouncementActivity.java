@@ -85,9 +85,9 @@ public class AddNewAnnouncementActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(resultCode==RESULT_OK &&requestCode == GALLERY_REQ_CODE
-           &&data!=null &&data.getData()!=null) {
-                uploadImage.setImageURI(data.getData());
-                imageUri = data.getData();
+                &&data!=null &&data.getData()!=null) {
+            uploadImage.setImageURI(data.getData());
+            imageUri = data.getData();
         }
     }
 
@@ -104,17 +104,14 @@ public class AddNewAnnouncementActivity extends AppCompatActivity {
             String randomUid = UUID.randomUUID().toString();
             StorageReference cloudStorage = firebaseStorage.getReference().child("images/"+randomUid);
             cloudStorage.putFile(imageUri).addOnSuccessListener(
-                    taskSnapshot -> cloudStorage.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                        @Override
-                        public void onSuccess(Uri uri) {
-                            Uri downloadUrl = uri;
-                            imageInput = downloadUrl.toString();
-                            Announcement announcement = new Announcement(titreInput, typeInput, imageInput,
-                                    branchInput, phoneInput, descriptionInput,
-                                    priceInput, firebaseAuth.getCurrentUser().getUid());
+                    taskSnapshot -> cloudStorage.getDownloadUrl().addOnSuccessListener(uri -> {
+                        Uri downloadUrl = uri;
+                        imageInput = downloadUrl.toString();
+                        Announcement announcement = new Announcement(titreInput, typeInput, imageInput,
+                                branchInput, phoneInput, descriptionInput,
+                                priceInput, firebaseAuth.getCurrentUser().getUid());
 
-                            saveAnnouncement(announcement);
-                        }
+                        saveAnnouncement(announcement);
                     })
             ).addOnCompleteListener(
                     listener->disableLoadingAnimation()
