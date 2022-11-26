@@ -24,6 +24,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 public class AddNewAnnouncementActivity extends AppCompatActivity {
     EditText titre;
@@ -36,7 +38,8 @@ public class AddNewAnnouncementActivity extends AppCompatActivity {
     User user;
     ImageView uploadImage;
     String titreInput, phoneInput, descriptionInput, priceInput, typeInput="produit", branchInput, imageInput;
-    private final FirebaseFirestore firestore = FirebaseFirestore.getInstance();
+    private final FirebaseFirestore fireStore = FirebaseFirestore.getInstance();
+    private final StorageReference fireStoreCloud = FirebaseStorage.getInstance().getReference();
     private final FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     private final int GALLERY_REQ_CODE = 1000;
 
@@ -76,7 +79,11 @@ public class AddNewAnnouncementActivity extends AppCompatActivity {
         if(resultCode==RESULT_OK) {
             if(requestCode == GALLERY_REQ_CODE) {
                 uploadImage.setImageURI(data.getData());
-                imageInput = data.getDataString();
+                fireStoreCloud.putFile(data.getData()).addOnCompleteListener(listener -> {
+                    System.out.println(listener.getResult().getUploadSessionUri().toString());
+                    imageInput = listener.getResult().getUploadSessionUri().toString();
+                });
+
             }
         }
     }
@@ -101,7 +108,7 @@ public class AddNewAnnouncementActivity extends AppCompatActivity {
     }
 
     public void saveAnnouncement(Announcement announcement){
-        firestore.collection("Announcement").add(announcement)
+        fireStore.collection("Announcement").add(announcement)
                 .addOnSuccessListener(
                         (OnSuccessListener) o -> showMessage("Votre annonce a été creé avec succée")
                 )
@@ -128,7 +135,7 @@ public class AddNewAnnouncementActivity extends AppCompatActivity {
     }
     public User getConnectedUser() {
         User user = new User();
-        DocumentReference docRef = firestore.collection("Users").document(firebaseAuth.getCurrentUser().getUid());
+        DocumentReference docRef = fireStore.collection("Users").document(firebaseAuth.getCurrentUser().getUid());
         docRef.get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 DocumentSnapshot document = task.getResult();
