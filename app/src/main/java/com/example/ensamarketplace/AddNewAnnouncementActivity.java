@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -38,6 +39,8 @@ import com.google.firebase.storage.UploadTask;
 import java.util.UUID;
 
 public class AddNewAnnouncementActivity extends AppCompatActivity {
+
+    View stepOne,stepTwo;
     EditText titre;
     EditText phone;
     EditText description;
@@ -49,11 +52,13 @@ public class AddNewAnnouncementActivity extends AppCompatActivity {
     ImageView uploadImage;
     Uri imageUri;
     String titreInput, phoneInput, descriptionInput, priceInput, typeInput="produit", branchInput, imageInput;
+    User user;
+
+
     private final FirebaseFirestore fireStore = FirebaseFirestore.getInstance();
     private final FirebaseStorage firebaseStorage= FirebaseStorage.getInstance();
     private final FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     private final int GALLERY_REQ_CODE = 1000;
-    User user = new User();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +77,10 @@ public class AddNewAnnouncementActivity extends AppCompatActivity {
 //        loadingIcon = findViewById(R.id.loadingIcon);
 //        serviceSwitch = findViewById(R.id.switchService);
 //        uploadImage = findViewById(R.id.uploadImage);
+        stepOne = findViewById(R.id.stepOne);
+        stepTwo = findViewById(R.id.stepTwo);
         spinnerBranch = findViewById(R.id.spinner);
+
         /*ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.branch,
                 androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
 
@@ -118,33 +126,34 @@ public class AddNewAnnouncementActivity extends AppCompatActivity {
     }
 
     public void addNewAnnouncement(View view) {
-        titreInput = titre.getText().toString();
-        phoneInput = phone.getText().toString();
-        descriptionInput = description.getText().toString();
-        priceInput = price.getText().toString();
-        RadioButton radio = findViewById(branch.getCheckedRadioButtonId());
-        branchInput = radio.getText().toString();
-        boolean validateForm = validateForm();
-        if(validateForm){
-            enableLoadingAnimation();
-            String randomUid = UUID.randomUUID().toString();
-            StorageReference cloudStorage = firebaseStorage.getReference().child("images/"+randomUid);
-            cloudStorage.putFile(imageUri).addOnSuccessListener(
-                    taskSnapshot -> cloudStorage.getDownloadUrl().addOnSuccessListener(uri -> {
-                        Uri downloadUrl = uri;
-                        imageInput = downloadUrl.toString();
-                        Announcement announcement = new Announcement(titreInput, typeInput, imageInput,
-                                branchInput, phoneInput, descriptionInput,
-                                priceInput, firebaseAuth.getCurrentUser().getUid());
 
-                        saveAnnouncement(announcement);
-                    })
-            ).addOnCompleteListener(
-                    listener->disableLoadingAnimation()
-            );
+        System.out.println("chaaa");
+//        titreInput = titre.getText().toString();
+//        phoneInput = phone.getText().toString();
+//        descriptionInput = description.getText().toString();
+//        priceInput = price.getText().toString();
+//        RadioButton radio = findViewById(branch.getCheckedRadioButtonId());
+//        branchInput = radio.getText().toString();
+//        boolean validateForm = validateForm();
+//        if(validateForm){
+//            enableLoadingAnimation();
+//            String randomUid = UUID.randomUUID().toString();
+//            StorageReference cloudStorage = firebaseStorage.getReference().child("images/"+randomUid);
+//            cloudStorage.putFile(imageUri).addOnSuccessListener(
+//                    taskSnapshot -> cloudStorage.getDownloadUrl().addOnSuccessListener(uri -> {
+//                        Uri downloadUrl = uri;
+//                        imageInput = downloadUrl.toString();
+//                        Announcement announcement = new Announcement(titreInput, typeInput, imageInput,
+//                                branchInput, phoneInput, descriptionInput,
+//                                priceInput, firebaseAuth.getCurrentUser().getUid());
+//
+//                        saveAnnouncement(announcement);
+//                    })
+//            ).addOnCompleteListener(
+//                    listener->disableLoadingAnimation()
+//            );
 
-        }
-
+//        }
 
     }
 
@@ -195,6 +204,18 @@ public class AddNewAnnouncementActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void  navigateToStepTwo(View view){
+        stepOne.animate().alpha(0f).setDuration(500);
+        stepTwo.animate().alpha(1f).setDuration(500);
+
+    }
+    public void  backToStepOne(View view){
+        stepOne.animate().alpha(1f).setDuration(500);
+        stepTwo.animate().alpha(0f).setDuration(500);
+
+    }
+
     public void showMessage(String errorMessage){
         Toast.makeText(this,errorMessage,Toast.LENGTH_SHORT).show();
     }

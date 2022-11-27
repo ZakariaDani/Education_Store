@@ -5,109 +5,104 @@
     style="@style/input"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:alpha="1"
     android:background="#00DF1818"
     android:backgroundTintMode="screen"
     android:foregroundTint="#FFFFFF"
     tools:context=".LoginActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/textView5"
+        style="@style/input_label"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.4"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/target_client"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/prix" />
 
+    <EditText
+        android:id="@+id/prix"
+        style="@style/input"
+        android:layout_width="340dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="184dp"
+        android:background="@drawable/stoke_background"
+        android:drawableLeft="@drawable/ic_title"
+        android:ems="10"
+        android:hint="@string/ann_title"
+        android:inputType="textEmailAddress"
+        android:textColor="#000000"
+        android:textColorHint="#78909C"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="340dp"
+        android:layout_height="50dp"
+        android:background="@drawable/branch_spinner"
+        android:contentDescription="@string/target_client"
+        android:popupBackground="@color/white"
+        android:spinnerMode="dropdown"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout2"
+        android:layout_width="340dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="@+id/spinner"
+        app:layout_constraintTop_toBottomOf="@+id/spinner">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintStart_toStartOf="@+id/description"
+            app:layout_constraintTop_toTopOf="@+id/description"
+            app:srcCompat="@drawable/ic_comment" />
 
         <EditText
-            android:id="@+id/prix"
+            android:id="@+id/description"
             style="@style/input"
-            android:layout_width="340dp"
-            android:layout_height="51dp"
-            android:layout_marginTop="4dp"
-            android:background="@drawable/stoke_background"
-            android:drawableLeft="@drawable/ic_title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/description_input_radius"
+            android:drawableLeft="@drawable/ic_baseline_arrow_drop_up_24"
             android:ems="10"
-            android:hint="@string/ann_title"
-            android:inputType="textEmailAddress"
+            android:gravity="start"
+            android:hint="@string/ann_desc"
+            android:inputType="textMultiLine|text|textImeMultiLine"
+            android:lines="8"
+            android:maxLines="10"
+            android:minLines="6"
             android:textColor="#000000"
-            android:textColorHint="#78909C"
+            android:textColorHint="@color/gray"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <Spinner
-            android:id="@+id/spinner"
-            android:layout_width="340dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/branch_spinner"
-            android:contentDescription="@string/target_client"
-            android:popupBackground="@color/white"
-            android:spinnerMode="dropdown"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/prix" />
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout2"
-            android:layout_width="340dp"
-            android:layout_height="150dp"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="40dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinner">
-
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="12dp"
-                app:layout_constraintStart_toStartOf="@+id/description"
-                app:layout_constraintTop_toTopOf="@+id/description"
-                app:srcCompat="@drawable/ic_comment" />
-
-            <EditText
-                android:id="@+id/description"
-                style="@style/input"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/description_input_radius"
-                android:drawableLeft="@drawable/ic_baseline_arrow_drop_up_24"
-                android:ems="10"
-                android:gravity="start"
-                android:hint="@string/ann_desc"
-                android:inputType="textMultiLine|text|textImeMultiLine"
-                android:lines="8"
-                android:maxLines="10"
-                android:minLines="6"
-                android:textColor="#000000"
-                android:textColorHint="@color/gray"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
-        android:id="@+id/addbutton"
+        android:id="@+id/nextButton"
         android:layout_width="110dp"
         android:layout_height="48dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="36dp"
+        android:layout_marginTop="80dp"
         android:backgroundTint="@color/main_color"
-        android:onClick="addNewAnnouncement"
+        android:onClick="navigateToStepTwo"
         android:text="@string/suivant"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

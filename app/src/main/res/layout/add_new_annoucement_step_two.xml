@@ -5,6 +5,7 @@
     style="@style/input"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:alpha="0"
     android:background="#00DF1818"
     android:backgroundTintMode="screen"
     android:foregroundTint="#FFFFFF"
@@ -14,8 +15,9 @@
         android:id="@+id/addbutton"
         android:layout_width="110dp"
         android:layout_height="48dp"
-        android:layout_marginTop="124dp"
-        android:layout_marginEnd="36dp"
+        android:layout_marginTop="88dp"
+        android:layout_marginEnd="40dp"
+        android:alpha="1"
         android:backgroundTint="@color/main_color"
         android:onClick="addNewAnnouncement"
         android:text="@string/valider"
@@ -24,12 +26,12 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <Button
-        android:id="@+id/addbutton3"
+        android:id="@+id/submitButton"
         android:layout_width="110dp"
         android:layout_height="48dp"
         android:layout_marginEnd="260dp"
         android:backgroundTint="@color/main_color"
-        android:onClick="addNewAnnouncement"
+        android:onClick="backToStepOne"
         android:text="@string/retourner"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="@+id/addbutton"
@@ -40,7 +42,8 @@
         style="@style/input"
         android:layout_width="340dp"
         android:layout_height="51dp"
-        android:layout_marginTop="132dp"
+        android:layout_marginTop="184dp"
+        android:alpha="1"
         android:background="@drawable/stoke_background"
         android:drawableLeft="@drawable/ic_price"
         android:ems="10"
@@ -49,7 +52,7 @@
         android:textColor="#000000"
         android:textColorHint="#78909C"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.577"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
