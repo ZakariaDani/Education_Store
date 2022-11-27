@@ -46,7 +46,7 @@ public class EditProfileActivity extends AppCompatActivity {
         phone = findViewById(R.id.phone);
 
         loadingIcon = findViewById(R.id.loadingIcon);
-        user = getConnectedUser();
+        getConnectedUser();
     }
 
     public void save(View view) {

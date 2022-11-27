@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/input"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#00DF1818"
+    android:backgroundTintMode="screen"
+    android:foregroundTint="#FFFFFF"
+    tools:context=".LoginActivity">
+
+    <Button
+        android:id="@+id/addbutton"
+        android:layout_width="110dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="124dp"
+        android:layout_marginEnd="36dp"
+        android:backgroundTint="@color/main_color"
+        android:onClick="addNewAnnouncement"
+        android:text="@string/valider"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <Button
+        android:id="@+id/addbutton3"
+        android:layout_width="110dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="260dp"
+        android:backgroundTint="@color/main_color"
+        android:onClick="addNewAnnouncement"
+        android:text="@string/retourner"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/addbutton"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <EditText
+        android:id="@+id/prix"
+        style="@style/input"
+        android:layout_width="340dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="132dp"
+        android:background="@drawable/stoke_background"
+        android:drawableLeft="@drawable/ic_price"
+        android:ems="10"
+        android:hint="@string/price"
+        android:inputType="textEmailAddress"
+        android:textColor="#000000"
+        android:textColorHint="#78909C"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.577"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        style="@style/input_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="36dp"
+        android:text="@string/add_img"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/prix" />
+
+    <TextView
+        android:id="@+id/textView4"
+        style="@style/optionel_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:text="@string/optionel"
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintTop_toTopOf="@+id/textView" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="204dp"
+        android:layout_height="106dp"
+        android:layout_marginTop="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:srcCompat="@drawable/ic_baseline_cloud_upload_24" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

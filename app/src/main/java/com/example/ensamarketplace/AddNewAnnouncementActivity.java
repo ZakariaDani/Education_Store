@@ -5,11 +5,13 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.Toast;
 
@@ -18,6 +20,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ensamarketplace.model.Announcement;
 import com.example.ensamarketplace.model.User;
+import com.example.ensamarketplace.utils.Branch;
+import com.example.ensamarketplace.utils.BranchAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -36,6 +40,7 @@ public class AddNewAnnouncementActivity extends AppCompatActivity {
     ProgressBar loadingIcon;
     Switch serviceSwitch;
     User user;
+    Spinner spinnerBranch;
     ImageView uploadImage;
     String titreInput, phoneInput, descriptionInput, priceInput, typeInput="produit", branchInput, imageInput;
     private final FirebaseFirestore fireStore = FirebaseFirestore.getInstance();
@@ -52,19 +57,27 @@ public class AddNewAnnouncementActivity extends AppCompatActivity {
 
         getSupportActionBar().hide();
         setContentView(R.layout.activity_add_new_announcement);
-        titre = findViewById(R.id.titre);
-        phone = findViewById(R.id.phone);
-        branch = findViewById(R.id.branch);
-        price = findViewById(R.id.price);
-        description = findViewById(R.id.description);
-        loadingIcon = findViewById(R.id.loadingIcon);
-        serviceSwitch = findViewById(R.id.switchService);
-        uploadImage = findViewById(R.id.uploadImage);
-        serviceSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            typeInput = isChecked ? "service":"produit";
-            System.out.println(isChecked);
-        });
-        user = getConnectedUser();
+//        titre = findViewById(R.id.titre);
+//        phone = findViewById(R.id.phone);
+//        branch = findViewById(R.id.branch);
+//        price = findViewById(R.id.price);
+//        description = findViewById(R.id.description);
+//        loadingIcon = findViewById(R.id.loadingIcon);
+//        serviceSwitch = findViewById(R.id.switchService);
+//        uploadImage = findViewById(R.id.uploadImage);
+        spinnerBranch = findViewById(R.id.spinner);
+        /*ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.branch,
+                androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
+
+        adapter.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
+        spinnerBranch.setAdapter(adapter);*/
+        BranchAdapter adapter = new BranchAdapter(getApplicationContext(), Branch.getAllBranches());
+        spinnerBranch.setAdapter(adapter);
+//        serviceSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
+//            typeInput = isChecked ? "service":"produit";
+//            System.out.println(isChecked);
+//        });
+//        getConnectedUser();
     }
 
     public void uploadImage(View view) {
@@ -133,7 +146,7 @@ public class AddNewAnnouncementActivity extends AppCompatActivity {
         }
         return validForm;
     }
-    public User getConnectedUser() {
+    public void getConnectedUser() {
         User user = new User();
         DocumentReference docRef = fireStore.collection("Users").document(firebaseAuth.getCurrentUser().getUid());
         docRef.get().addOnCompleteListener(task -> {
@@ -153,7 +166,6 @@ public class AddNewAnnouncementActivity extends AppCompatActivity {
                 System.out.println("get failed with "+ task.getException());
             }
         });
-        return user;
     }
     public void showMessage(String errorMessage){
         Toast.makeText(this,errorMessage,Toast.LENGTH_SHORT).show();

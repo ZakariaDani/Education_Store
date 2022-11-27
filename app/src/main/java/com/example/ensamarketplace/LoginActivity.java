@@ -105,14 +105,10 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void navigateToHomePage(){
-        Intent intent = new Intent(this, HomeActivity.class);
-        startActivity(intent);
-    }
 
     //just fot test-----------
     public void navigateToAddAnnouncementPage(){
-        Intent intent = new Intent(this, EditProfileActivity.class);
+        Intent intent = new Intent(this, AddNewAnnouncementActivity.class);
         startActivity(intent);
     }
     public void navigateToListAnnouncementsPage(){

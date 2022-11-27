@@ -10,6 +10,12 @@
     <style name="input_label">
         <item name="android:textColor">@color/black</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:textSize">18dp</item>
+        <item name="fontFamily">@font/montserrat</item>
+    </style>
+
+    <style name="optionel_label">
+        <item name="android:textColor">@color/main_color</item>
         <item name="android:textSize">15dp</item>
         <item name="fontFamily">@font/montserrat</item>
     </style>
@@ -63,4 +69,5 @@
         <item name="android:rotation">6</item>
         <item name="android:visibility">invisible</item>
     </style>
+
 </resources>

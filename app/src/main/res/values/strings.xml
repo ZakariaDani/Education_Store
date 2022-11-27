@@ -6,9 +6,9 @@
     <string name="register">Register</string>
     <string name="edit">Modifier le profil</string>
     <string name="add_img">Ajouter une image</string>
-    <string name="price">Prix</string>
+    <string name="price">Prix en DH</string>
     <string name="save">Sauvegarder</string>
-    <string name="add_new_ann">Ajouter une nouvelle annonce</string>
+    <string name="add_new_ann">Ajouter une annonce</string>
     <string name="ann_title">Titre</string>
     <string name="ann_type">Type</string>
     <string name="ann_fici">Filière ciblée</string>
@@ -28,6 +28,7 @@
     <string name="creer_un">Créer un</string>
     <string name="upload_img">Ajouter une image</string>
     <string name="vous_avez_deja_un_compte">Vous avez déja un compte?</string>
+    <string name="target_client">Les clients cibles</string>
     <string name="gi">GI</string>
     <string name="cp">CP</string>
     <string name="ge">GR</string>
@@ -37,5 +38,8 @@
     <string name="service">Service</string>
     <string name="product">Produit</string>
     <string name="avatar">avatar</string>
-
+    <string name="suivant">next</string>
+    <string name="valider">valider</string>
+    <string name="retourner">back</string>
+    <string name="optionel">*optionel</string>
 </resources>

@@ -13,4 +13,10 @@
     <color name="second_color">#16AA69</color>
     <color name="loading_color">#2192FF</color>
 
+    <color name="gi_color">@color/main_color</color>
+    <color name="ge_color">#FFD700</color>
+    <color name="gil_color">#1034A6</color>
+    <color name="grt_color">#20B2AA</color>
+    <color name="ensa_color">@color/black</color>
+
 </resources>
