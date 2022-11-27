@@ -26,7 +26,6 @@
             style="@style/background_container"
             android:layout_width="149dp"
             android:layout_height="58dp"
-            android:layout_marginTop="20dp"
             android:background="@drawable/rounded_container"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.486"
@@ -107,31 +106,31 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/type" />
+            app:layout_constraintTop_toBottomOf="@+id/branch" />
 
         <Button
             android:id="@+id/loginButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="40dp"
             android:backgroundTint="@color/main_color"
             android:onClick="register"
             android:text="@string/register"
             android:textColor="#FFFFFF"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/password" />
 
         <TextView
-            android:id="@+id/registerButton"
+            android:id="@+id/navigationButton"
             style="@style/creer_un"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="1dp"
             android:layout_marginEnd="36dp"
             android:minHeight="48dp"
-            android:onClick="navigateToLoginPage"
-            android:text="@string/login"
+            android:text="@string/login_underline"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/textView2"
@@ -143,7 +142,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="44dp"
+            android:layout_marginTop="24dp"
             android:text="@string/vous_avez_deja_un_compte"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/loginButton" />

@@ -13,6 +13,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ensamarketplace.model.User;
+import com.example.ensamarketplace.utils.BottomBar;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -25,8 +27,10 @@ public class EditProfileActivity extends AppCompatActivity {
 
     RadioGroup branch;
     String emailInput,nameInput,branchInput,phoneInput;
-    User user;
     ProgressBar loadingIcon;
+    BottomNavigationView bottomNavigationView;
+
+    User user;
     private final FirebaseFirestore firestore = FirebaseFirestore.getInstance();
     private final FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
@@ -46,6 +50,8 @@ public class EditProfileActivity extends AppCompatActivity {
         phone = findViewById(R.id.phone);
 
         loadingIcon = findViewById(R.id.loadingIcon);
+        bottomNavigationView = findViewById(R.id.bottom_bar);
+        BottomBar.setupEvents(bottomNavigationView,getApplicationContext());
         getConnectedUser();
     }
 

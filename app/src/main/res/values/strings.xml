@@ -4,6 +4,8 @@
 
     <string name="login">Login</string>
     <string name="register">Register</string>
+    <string name="register_underline"><u>Créer un</u></string>
+    <string name="login_underline"><u>Login</u></string>
     <string name="edit">Modifier le profil</string>
     <string name="add_img">Ajouter une image</string>
     <string name="price">Prix en DH</string>
@@ -25,7 +27,6 @@
     <string name="auth_branch_hint">Veuillez entrer votre branch</string>
     <string name="auth_phone_hint">Numéro de téléphone</string>
     <string name="vous_avez_pas_de_compte">Vous n avez pas de compte?</string>
-    <string name="creer_un">Créer un</string>
     <string name="upload_img">Ajouter une image</string>
     <string name="vous_avez_deja_un_compte">Vous avez déja un compte?</string>
     <string name="target_client">Les clients cibles</string>

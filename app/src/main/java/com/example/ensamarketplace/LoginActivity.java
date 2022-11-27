@@ -10,8 +10,10 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.ensamarketplace.utils.Navigator;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -28,6 +30,7 @@ public class LoginActivity extends AppCompatActivity {
 
     ProgressBar loadingIcon;
 
+    private TextView registerButton;
     private final FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
 
@@ -44,6 +47,8 @@ public class LoginActivity extends AppCompatActivity {
         email = findViewById(R.id.emaill);
         password = findViewById(R.id.password);
         loadingIcon = findViewById(R.id.loadingIcon);
+        registerButton = findViewById(R.id.registerButton);
+        registerButton.setOnClickListener(event->{Navigator.navigateToRegistry(this);});
     }
 
     public void login(View view){
@@ -54,9 +59,7 @@ public class LoginActivity extends AppCompatActivity {
             enableLoadingAnimation();
             firebaseAuth.signInWithEmailAndPassword(emailInput,passwordInput).addOnSuccessListener(
                     authResult -> {
-                        //navigateToHomePage();
-                       //navigateToListAnnouncementsPage();
-                        navigateToAddAnnouncementPage();
+                        Navigator.navigateToHome(this);
                     }
             ).addOnFailureListener(
                     e -> showMessage("l'addresse email ou le mot de passe est incorrect")
@@ -87,22 +90,6 @@ public class LoginActivity extends AppCompatActivity {
         return validForm;
     }
 
-    public void navigateToRegisterPage(View view){
-        Intent intent = new Intent(this, RegisterActivity.class);
-        startActivity(intent);
-    }
-
-
-    //just fot test-----------
-    public void navigateToAddAnnouncementPage(){
-        Intent intent = new Intent(this, AddNewAnnouncementActivity.class);
-        startActivity(intent);
-    }
-    public void navigateToListAnnouncementsPage(){
-        Intent intent = new Intent(this, ListAnnouncements.class);
-        startActivity(intent);
-    }
-    //-----------
 
     public void enableLoadingAnimation(){
         loadingIcon.setVisibility(View.VISIBLE);

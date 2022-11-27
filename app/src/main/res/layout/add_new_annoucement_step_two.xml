@@ -8,7 +8,6 @@
     android:alpha="0"
     android:background="#00DF1818"
     android:backgroundTintMode="screen"
-    android:foregroundTint="#FFFFFF"
     tools:context=".LoginActivity">
 
     <Button
