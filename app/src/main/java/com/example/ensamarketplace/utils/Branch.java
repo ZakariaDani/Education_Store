@@ -48,7 +48,6 @@ public class Branch implements Serializable {
 
 
         branches.addAll(List.of(CP,GI,GIL,GRT,GE,ALL));
-        System.out.println(branches);
 
         return branches;
     }

@@ -3,7 +3,6 @@ package com.example.ensamarketplace;
 import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.os.StrictMode;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,10 +18,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ensamarketplace.model.Announcement;
 
-import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -104,7 +101,7 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
 
         public MyViewHolder(View itemView) {
             super(itemView);
-            title = itemView.findViewById(R.id.title);
+            title = itemView.findViewById(R.id.price);
             price = itemView.findViewById(R.id.price);
             image = itemView.findViewById(R.id.image);
             cardView = itemView.findViewById(R.id.carView);

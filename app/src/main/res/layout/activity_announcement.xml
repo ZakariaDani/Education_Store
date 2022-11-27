@@ -28,7 +28,7 @@
             android:src="@drawable/no_image" />
 
         <TextView
-            android:id="@+id/title"
+            android:id="@+id/price"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/image"
@@ -41,7 +41,7 @@
             android:id="@+id/price"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/title"
+            android:layout_below="@id/price"
             android:layout_marginStart="10dp"
             android:fontFamily="@font/montserrat"
             android:drawablePadding="2dp"

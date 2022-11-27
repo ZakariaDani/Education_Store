@@ -10,9 +10,11 @@ public class Announcement {
     private String price;
     private String userOwner;
     private int id;
+
     public Announcement(){}
 
-    public Announcement(String titre, String type, String image, String branch, String phone, String description, String price, String userOwner) {
+    public Announcement(String titre, String type, String image, String branch,
+                        String phone, String description, String price, String userOwner) {
         this.titre = titre;
         this.type = type;
         this.image = image;
@@ -21,6 +23,7 @@ public class Announcement {
         this.description = description;
         this.price = price;
         this.userOwner = userOwner;
+
     }
 
     public int getId() {
