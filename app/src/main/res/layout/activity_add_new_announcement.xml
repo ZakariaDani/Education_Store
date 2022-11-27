@@ -6,8 +6,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#00DF1818"
+    android:backgroundTint="#FFFFFF"
     android:backgroundTintMode="screen"
     android:fitsSystemWindows="true"
+    android:foregroundTint="#FFFFFF"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
     tools:context=".LoginActivity">
@@ -49,7 +51,7 @@
         android:id="@+id/stepTwo"
         layout="@layout/add_new_annoucement_step_two"
         android:layout_width="0dp"
-        android:layout_height="731dp"
+        android:layout_height="0dp"
         android:fitsSystemWindows="true"
         app:layout_constraintBottom_toBottomOf="@+id/stepOne"
         app:layout_constraintEnd_toEndOf="parent"
@@ -59,9 +61,12 @@
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:backgroundTint="#8E5B5B"
-        app:menu="@menu/bottom_bar"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        android:background="@drawable/bottom_bar_radius"
+        app:backgroundTint="@color/main_color"
+        app:itemIconTint="@color/white"
+        app:itemTextColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:menu="@menu/bottom_bar" />
 
     <ProgressBar
         android:id="@+id/loadingIcon"

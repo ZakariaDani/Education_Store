@@ -12,9 +12,11 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ensamarketplace.model.User;
+import com.example.ensamarketplace.utils.Navigator;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -36,6 +38,7 @@ public class RegisterActivity extends AppCompatActivity {
     String emailInput,nameInput,passwordInput,branchInput,phoneInput;
 
     ProgressBar loadingIcon;
+    TextView loginButton;
 
     private final FirebaseFirestore firestore = FirebaseFirestore.getInstance();
     private final FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
@@ -56,7 +59,12 @@ public class RegisterActivity extends AppCompatActivity {
         branch = findViewById(R.id.branch);
         phone = findViewById(R.id.phone);
 
+        loginButton  = findViewById(R.id.navigationButton);
         loadingIcon = findViewById(R.id.loadingIcon);
+
+        loginButton.setOnClickListener(event->{
+            Navigator.navigateToLogin(this);
+        });
     }
 
     public void register(View view) {
@@ -100,7 +108,7 @@ public class RegisterActivity extends AppCompatActivity {
                             @Override
                             public void onSuccess(Void unused) {
                                 showMessage("Votre compte a été creé avec succée");
-                                navigateToLoginPage(null);
+                                Navigator.navigateToHome(getApplicationContext());
                             }
                         }
                 )
@@ -123,11 +131,6 @@ public class RegisterActivity extends AppCompatActivity {
 
     public void showMessage(String errorMessage){
         Toast.makeText(this,errorMessage,Toast.LENGTH_SHORT).show();
-    }
-
-    public void navigateToLoginPage(View view){
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
     }
 
     public boolean validateForm(){

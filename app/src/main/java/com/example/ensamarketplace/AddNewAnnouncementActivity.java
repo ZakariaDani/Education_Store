@@ -190,19 +190,22 @@ public class AddNewAnnouncementActivity extends AppCompatActivity {
     }
 
     public void  navigateToStepTwo(View view){
-        System.out.println("eeeeeeeeeeee");
-        stepOne.animate().alpha(0f).setDuration(500);
-        stepTwo.animate().alpha(1f).setDuration(500);
+        stepOne.animate().alpha(0f).setDuration(800);
+        stepTwo.animate().alpha(1f).setDuration(800);
         stepOne.setVisibility(View.INVISIBLE);
+        stepOne.setClickable(false);
         stepTwo.setVisibility(View.VISIBLE);
+        stepTwo.setClickable(true);
+
 
     }
     public void  backToStepOne(View view){
-        System.out.println("aaaaaaaaa");
-        stepOne.animate().alpha(1f).setDuration(500);
-        stepTwo.animate().alpha(0f).setDuration(500);
+        stepOne.animate().alpha(1f).setDuration(800);
+        stepTwo.animate().alpha(0f).setDuration(800);
         stepTwo.setVisibility(View.INVISIBLE);
+        stepTwo.setClickable(false);
         stepOne.setVisibility(View.VISIBLE);
+        stepOne.setClickable(true);
 
     }
 
