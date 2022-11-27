@@ -73,7 +73,7 @@
         <Button
             android:id="@+id/save"
             android:layout_width="284dp"
-            android:layout_height="44dp"
+            android:layout_height="48dp"
             android:layout_marginBottom="116dp"
             android:backgroundTint="@color/main_color"
             android:onClick="save"
@@ -165,5 +165,24 @@
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="81dp"
+        android:layout_height="83dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/sun" />
 
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bottom_bar_radius"
+        app:backgroundTint="@color/main_color"
+        app:itemIconTint="@color/white"
+        app:itemTextColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_bar" />
 </androidx.constraintlayout.widget.ConstraintLayout>

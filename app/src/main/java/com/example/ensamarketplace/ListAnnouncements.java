@@ -21,6 +21,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ensamarketplace.model.Announcement;
+import com.example.ensamarketplace.utils.BottomBar;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -38,6 +40,8 @@ public class ListAnnouncements extends AppCompatActivity {
     private RecyclerView.LayoutManager layoutManager;
     private RecycleViewAdapter recycleViewAdapter;
 
+    private BottomNavigationView bottomNavigationView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +51,8 @@ public class ListAnnouncements extends AppCompatActivity {
         updateActionBarStyles();
 
         setContentView(R.layout.activity_list_announcements);
-
+        bottomNavigationView = findViewById(R.id.bottom_bar);
+        BottomBar.setupEvents(bottomNavigationView,getApplicationContext());
         prepareAnnouncements();
     }
 

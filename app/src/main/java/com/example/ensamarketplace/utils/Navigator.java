@@ -11,28 +11,31 @@ import com.example.ensamarketplace.RegisterActivity;
 
 public class Navigator {
 
-    public static void navigateToHome(Context context){
-        Intent intent = new Intent(context, ListAnnouncements.class);
+    public static void navigateTo(Context context ,Class destination){
+        Intent intent = new Intent(context, destination);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
+    }
+
+    public static void navigateToHome(Context context){
+        navigateTo(context,ListAnnouncements.class);
     }
 
     public static void navigateToLogin(Context context){
-        Intent intent = new Intent(context, LoginActivity.class);
-        context.startActivity(intent);
+        navigateTo(context,LoginActivity.class);
     }
 
     public static void navigateToRegistry(Context context){
-        Intent intent = new Intent(context, RegisterActivity.class);
-        context.startActivity(intent);
+        navigateTo(context,RegisterActivity.class);
     }
 
     public static void navigateToEditProfile(Context context){
-        Intent intent = new Intent(context, EditProfileActivity.class);
-        context.startActivity(intent);
+        navigateTo(context,EditProfileActivity.class);
     }
 
     public static void navigateToAddAnnoucement(Context context){
-        Intent intent = new Intent(context, AddNewAnnouncementActivity.class);
-        context.startActivity(intent);
+        navigateTo(context,AddNewAnnouncementActivity.class);
     }
+
+
 }

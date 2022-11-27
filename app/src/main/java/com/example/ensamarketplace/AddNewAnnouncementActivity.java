@@ -19,10 +19,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ensamarketplace.model.Announcement;
 import com.example.ensamarketplace.model.User;
+import com.example.ensamarketplace.utils.BottomBar;
 import com.example.ensamarketplace.utils.Branch;
 import com.example.ensamarketplace.utils.BranchAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -47,9 +49,12 @@ public class AddNewAnnouncementActivity extends AppCompatActivity {
     RadioGroup type;
     Spinner branchSpinner;
     ImageView uploadImage;
+    BottomNavigationView bottomNavigationView;
     Uri imageUri;
     String titreInput, descriptionInput, priceInput, typeInput="produit", branchInput, imageInput;
     User user = new User();
+
+
 
     private final FirebaseFirestore fireStore = FirebaseFirestore.getInstance();
     private final FirebaseStorage firebaseStorage= FirebaseStorage.getInstance();
@@ -86,7 +91,8 @@ public class AddNewAnnouncementActivity extends AppCompatActivity {
 
         BranchAdapter adapter = new BranchAdapter(getApplicationContext(), Branch.getAllBranches());
         branchSpinner.setAdapter(adapter);
-
+        bottomNavigationView = findViewById(R.id.bottom_bar);
+        BottomBar.setupEvents(bottomNavigationView,getApplicationContext());
         getConnectedUser();
 
     }
