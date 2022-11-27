@@ -88,10 +88,13 @@ public class AddNewAnnouncementActivity extends AppCompatActivity {
         submitButton = findViewById(R.id.submitButton);
         nextButton = findViewById(R.id.nextButton);
 
-
         BranchAdapter adapter = new BranchAdapter(getApplicationContext(), Branch.getAllBranches());
         branchSpinner.setAdapter(adapter);
         bottomNavigationView = findViewById(R.id.bottom_bar);
+
+        stepTwo.setClickable(false);
+        stepTwo.setVisibility(View.INVISIBLE);
+
         BottomBar.setupEvents(bottomNavigationView,getApplicationContext());
         getConnectedUser();
 
@@ -170,6 +173,9 @@ public class AddNewAnnouncementActivity extends AppCompatActivity {
                 typeInput.isEmpty() || priceInput.isEmpty() || descriptionInput.isEmpty() ) {
             showMessage("Tous les champs doivent etre remplis");
         }
+        else if(!priceInput.matches("^[0-9]+")){
+            showMessage("Le prix doit etre un nombre positif");
+        }
         else{
             validForm = true;
         }
@@ -199,8 +205,8 @@ public class AddNewAnnouncementActivity extends AppCompatActivity {
         stepOne.animate().alpha(0f).setDuration(800);
         stepTwo.animate().alpha(1f).setDuration(800);
         stepOne.setVisibility(View.INVISIBLE);
-        stepOne.setClickable(false);
         stepTwo.setVisibility(View.VISIBLE);
+        stepOne.setClickable(false);
         stepTwo.setClickable(true);
 
 
@@ -209,10 +215,9 @@ public class AddNewAnnouncementActivity extends AppCompatActivity {
         stepOne.animate().alpha(1f).setDuration(800);
         stepTwo.animate().alpha(0f).setDuration(800);
         stepTwo.setVisibility(View.INVISIBLE);
-        stepTwo.setClickable(false);
         stepOne.setVisibility(View.VISIBLE);
+        stepTwo.setClickable(false);
         stepOne.setClickable(true);
-
     }
 
     public void showMessage(String errorMessage){

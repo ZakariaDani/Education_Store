@@ -130,6 +130,7 @@ public class EditProfileActivity extends AppCompatActivity {
     public void disableLoadingAnimation(){
         loadingIcon.setVisibility(View.INVISIBLE);
     }
+
     public void showMessage(String errorMessage){
         Toast.makeText(this,errorMessage,Toast.LENGTH_SHORT).show();
     }
