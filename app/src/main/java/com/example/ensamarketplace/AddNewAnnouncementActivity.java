@@ -6,11 +6,13 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.Toast;
 
@@ -20,6 +22,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ensamarketplace.model.Announcement;
 import com.example.ensamarketplace.model.User;
+import com.example.ensamarketplace.utils.Branch;
+import com.example.ensamarketplace.utils.BranchAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -40,7 +44,8 @@ public class AddNewAnnouncementActivity extends AppCompatActivity {
     EditText price;
     RadioGroup branch;
     ProgressBar loadingIcon;
-    Switch serviceSwitch;
+//    Switch serviceSwitch;
+    Spinner spinnerBranch;
     ImageView uploadImage;
     Uri imageUri;
     String titreInput, phoneInput, descriptionInput, priceInput, typeInput="produit", branchInput, imageInput;
@@ -59,7 +64,28 @@ public class AddNewAnnouncementActivity extends AppCompatActivity {
 
         getSupportActionBar().hide();
         setContentView(R.layout.activity_add_new_announcement);
-        titre = findViewById(R.id.titre);
+//        titre = findViewById(R.id.titre);
+//        phone = findViewById(R.id.phone);
+//        branch = findViewById(R.id.branch);
+//        price = findViewById(R.id.price);
+//        description = findViewById(R.id.description);
+//        loadingIcon = findViewById(R.id.loadingIcon);
+//        serviceSwitch = findViewById(R.id.switchService);
+//        uploadImage = findViewById(R.id.uploadImage);
+        spinnerBranch = findViewById(R.id.spinner);
+        /*ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.branch,
+                androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
+
+        adapter.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
+        spinnerBranch.setAdapter(adapter);*/
+        BranchAdapter adapter = new BranchAdapter(getApplicationContext(), Branch.getAllBranches());
+        spinnerBranch.setAdapter(adapter);
+//        serviceSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
+//            typeInput = isChecked ? "service":"produit";
+//            System.out.println(isChecked);
+//        });
+//        getConnectedUser();
+       /* titre = findViewById(R.id.titre);
         phone = findViewById(R.id.phone);
         branch = findViewById(R.id.branch);
         price = findViewById(R.id.price);
@@ -71,7 +97,7 @@ public class AddNewAnnouncementActivity extends AppCompatActivity {
             typeInput = isChecked ? "service":"produit";
             System.out.println(isChecked);
         });
-        getConnectedUser();
+        getConnectedUser();*/
     }
 
     public void getImageFromGallery(View view) {
@@ -149,6 +175,7 @@ public class AddNewAnnouncementActivity extends AppCompatActivity {
         return true;
     }
     public void getConnectedUser() {
+        User user = new User();
         DocumentReference docRef = fireStore.collection("Users").document(firebaseAuth.getCurrentUser().getUid());
         docRef.get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
