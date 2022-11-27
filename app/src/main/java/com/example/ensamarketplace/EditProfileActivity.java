@@ -42,7 +42,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
         email = findViewById(R.id.emaill);
         name = findViewById(R.id.name);
-        branch = findViewById(R.id.branch);
+        branch = findViewById(R.id.type);
         phone = findViewById(R.id.phone);
 
         loadingIcon = findViewById(R.id.loadingIcon);

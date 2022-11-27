@@ -84,7 +84,7 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <RadioGroup
-            android:id="@+id/branch"
+            android:id="@+id/type"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_marginTop="20dp"

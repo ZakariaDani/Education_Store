@@ -20,10 +20,10 @@
         android:layout_marginTop="24dp"
         android:text="@string/target_client"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/prix" />
+        app:layout_constraintTop_toBottomOf="@+id/title" />
 
     <EditText
-        android:id="@+id/prix"
+        android:id="@+id/title"
         style="@style/input"
         android:layout_width="340dp"
         android:layout_height="51dp"
@@ -32,7 +32,7 @@
         android:drawableLeft="@drawable/ic_title"
         android:ems="10"
         android:hint="@string/ann_title"
-        android:inputType="textEmailAddress"
+        android:inputType="text"
         android:textColor="#000000"
         android:textColorHint="#78909C"
         app:layout_constraintEnd_toEndOf="parent"
@@ -40,7 +40,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
-        android:id="@+id/spinner"
+        android:id="@+id/branchSpinner"
         android:layout_width="340dp"
         android:layout_height="50dp"
         android:background="@drawable/branch_spinner"
@@ -54,10 +54,10 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout2"
         android:layout_width="340dp"
-        android:layout_height="150dp"
+        android:layout_height="200dp"
         android:layout_marginTop="20dp"
-        app:layout_constraintStart_toStartOf="@+id/spinner"
-        app:layout_constraintTop_toBottomOf="@+id/spinner">
+        app:layout_constraintStart_toStartOf="@+id/branchSpinner"
+        app:layout_constraintTop_toBottomOf="@+id/branchSpinner">
 
         <ImageView
             android:id="@+id/imageView2"
@@ -96,12 +96,13 @@
         android:id="@+id/nextButton"
         android:layout_width="110dp"
         android:layout_height="48dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="28dp"
         android:backgroundTint="@color/main_color"
         android:onClick="navigateToStepTwo"
         android:text="@string/suivant"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
 
