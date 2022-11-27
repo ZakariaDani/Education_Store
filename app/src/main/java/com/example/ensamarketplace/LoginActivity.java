@@ -55,7 +55,8 @@ public class LoginActivity extends AppCompatActivity {
             firebaseAuth.signInWithEmailAndPassword(emailInput,passwordInput).addOnSuccessListener(
                     authResult -> {
                         //navigateToHomePage();
-                        navigateToListAnnouncementsPage();
+                       //navigateToListAnnouncementsPage();
+                        navigateToAddAnnouncementPage();
                     }
             ).addOnFailureListener(
                     e -> showMessage("l'addresse email ou le mot de passe est incorrect")
