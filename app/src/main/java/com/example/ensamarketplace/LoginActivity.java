@@ -53,28 +53,14 @@ public class LoginActivity extends AppCompatActivity {
         if(validForm){
             enableLoadingAnimation();
             firebaseAuth.signInWithEmailAndPassword(emailInput,passwordInput).addOnSuccessListener(
-                    new OnSuccessListener<AuthResult>() {
-                        @Override
-                        public void onSuccess(AuthResult authResult) {
-                            //navigateToHomePage();
-                            //navigateToListAnnouncementsPage();
-                            navigateToAddAnnouncementPage();
-                        }
+                    authResult -> {
+                        //navigateToHomePage();
+                        navigateToListAnnouncementsPage();
                     }
             ).addOnFailureListener(
-                    new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            showMessage("l'addresse email ou le mot de passe est incorrect");
-                        }
-                    }
+                    e -> showMessage("l'addresse email ou le mot de passe est incorrect")
             ).addOnCompleteListener(
-                    new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            disableLoadingAnimation();
-                        }
-                    }
+                    task -> disableLoadingAnimation()
             );
         }
     }
