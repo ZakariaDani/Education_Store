@@ -104,13 +104,8 @@ public class RegisterActivity extends AppCompatActivity {
     public void saveUser(User user,String userID){
         firestore.collection("Users").document(userID)
                 .set(user).addOnSuccessListener(
-                        new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void unused) {
-                                showMessage("Votre compte a été creé avec succée");
-                                Navigator.navigateToHome(getApplicationContext());
-                            }
-                        }
+                        result->{showMessage("Votre compte a été creé avec succée");
+                            Navigator.navigateToHome(this);}
                 )
                .addOnFailureListener(
                 new OnFailureListener() {

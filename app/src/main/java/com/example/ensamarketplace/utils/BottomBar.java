@@ -2,12 +2,14 @@ package com.example.ensamarketplace.utils;
 
 import android.content.Context;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.ensamarketplace.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class BottomBar {
     
-    public static void setupEvents(BottomNavigationView nav, Context context){
+    public static void setupEvents(BottomNavigationView nav, AppCompatActivity context){
 
         nav.setOnItemSelectedListener(
                 item -> {

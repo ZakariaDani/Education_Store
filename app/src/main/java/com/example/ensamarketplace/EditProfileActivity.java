@@ -51,7 +51,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
         loadingIcon = findViewById(R.id.loadingIcon);
         bottomNavigationView = findViewById(R.id.bottom_bar);
-        BottomBar.setupEvents(bottomNavigationView,getApplicationContext());
+        BottomBar.setupEvents(bottomNavigationView,this);
         getConnectedUser();
     }
 
@@ -130,6 +130,7 @@ public class EditProfileActivity extends AppCompatActivity {
     public void disableLoadingAnimation(){
         loadingIcon.setVisibility(View.INVISIBLE);
     }
+
     public void showMessage(String errorMessage){
         Toast.makeText(this,errorMessage,Toast.LENGTH_SHORT).show();
     }
