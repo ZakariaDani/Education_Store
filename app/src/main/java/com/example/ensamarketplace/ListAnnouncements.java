@@ -52,7 +52,7 @@ public class ListAnnouncements extends AppCompatActivity {
 
         setContentView(R.layout.activity_list_announcements);
         bottomNavigationView = findViewById(R.id.bottom_bar);
-        BottomBar.setupEvents(bottomNavigationView,getApplicationContext());
+        BottomBar.setupEvents(bottomNavigationView,this);
         prepareAnnouncements();
     }
 

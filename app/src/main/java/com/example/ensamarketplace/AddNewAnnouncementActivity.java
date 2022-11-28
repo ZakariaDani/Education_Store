@@ -40,10 +40,8 @@ public class AddNewAnnouncementActivity extends AppCompatActivity {
 
     View stepOne,stepTwo;
     EditText title;
-    EditText phone;
     EditText description;
     EditText price;
-    RadioGroup branch;
     Button submitButton,nextButton;
     ProgressBar loadingIcon;
     RadioGroup type;
@@ -53,8 +51,6 @@ public class AddNewAnnouncementActivity extends AppCompatActivity {
     Uri imageUri;
     String titreInput, descriptionInput, priceInput, typeInput="produit", branchInput, imageInput;
     User user = new User();
-
-
 
     private final FirebaseFirestore fireStore = FirebaseFirestore.getInstance();
     private final FirebaseStorage firebaseStorage= FirebaseStorage.getInstance();
@@ -95,7 +91,7 @@ public class AddNewAnnouncementActivity extends AppCompatActivity {
         stepTwo.setClickable(false);
         stepTwo.setVisibility(View.INVISIBLE);
 
-        BottomBar.setupEvents(bottomNavigationView,getApplicationContext());
+        BottomBar.setupEvents(bottomNavigationView,this);
         getConnectedUser();
 
     }
@@ -118,7 +114,7 @@ public class AddNewAnnouncementActivity extends AppCompatActivity {
     }
 
     public void addNewAnnouncement(View view) {
-
+//        this.overridePendingTransition();
         titreInput = title.getText().toString();
         descriptionInput = description.getText().toString();
         priceInput = price.getText().toString();
