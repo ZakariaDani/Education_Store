@@ -49,9 +49,11 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
         }else {
             holder.image.setBackgroundResource(R.drawable.no_image);
         }
-        holder.title.setText(announcement.getTitre());
-        holder.price.setText(announcement.getPrice() + "DHS");
-        holder.cardView.setId(announcement.getId());
+        if(announcement.getTitre() != null && announcement.getPrice() != null ) {
+            holder.title.setText(announcement.getTitre());
+            holder.price.setText(announcement.getPrice() + "DHS");
+            holder.cardView.setId(announcement.getId());
+        }
     }
 
 
