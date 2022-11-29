@@ -17,6 +17,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -89,7 +90,7 @@ public class ListAnnouncements extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        recycleViewAdapter = new RecycleViewAdapter(announcements);
+        recycleViewAdapter = new RecycleViewAdapter(this, announcements);
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(recycleViewAdapter);
     }
@@ -109,7 +110,9 @@ public class ListAnnouncements extends AppCompatActivity {
         if (!queryDocumentSnapshots.isEmpty()) {
             List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
             announcements = list.stream()
-                    .map(d -> d.toObject(Announcement.class))
+                    .map(d -> {
+                        return new Announcement(d.get("titre").toString(), d.get("type").toString(), d.get("image") != null ? d.get("image").toString() : "", d.get("branch").toString(), d.get("phone").toString(), d.get("description").toString(), d.get("price").toString(), d.get("userOwner").toString(), d.getId());
+                    })
                     .collect(Collectors.toList());
         } else {
             showMessage("Aucune donnée trouvée dans la base de données");
