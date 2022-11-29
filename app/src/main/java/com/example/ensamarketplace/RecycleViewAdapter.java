@@ -1,6 +1,8 @@
 package com.example.ensamarketplace;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.StrictMode;
@@ -27,8 +29,9 @@ import java.util.List;
 public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.MyViewHolder> implements Filterable{
     private final List<Announcement> allAnnouncements;
     private final List<Announcement> filteredAnnouncements;
-
-    RecycleViewAdapter(List<Announcement> announcements) {
+    private Context mContext;
+    RecycleViewAdapter(Context context, List<Announcement> announcements) {
+        mContext = context;
         this.allAnnouncements = announcements;
         filteredAnnouncements = new ArrayList<>(announcements);
     }
@@ -42,7 +45,7 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
     }
 
     @Override
-    public void onBindViewHolder(RecycleViewAdapter.MyViewHolder holder, final int position) {
+    public void onBindViewHolder(RecycleViewAdapter.MyViewHolder holder, @SuppressLint("RecyclerView") final int position) {
         final Announcement announcement = filteredAnnouncements.get(position);
         if(announcement.getImage() != null) {
             setImageFromUri(holder, announcement);
@@ -54,6 +57,15 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
             holder.price.setText(announcement.getPrice() + "DHS");
             holder.cardView.setId(announcement.getId());
         }
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String documentID = allAnnouncements.get(position).getDocumentID();
+                Intent intent = new Intent(mContext, ShowAnnouncementDetailsActivity.class);
+                intent.putExtra("documentId", documentID);
+                mContext.startActivity(intent);
+            }
+        });
     }
 
 

@@ -9,10 +9,24 @@ public class Announcement {
     private String description;
     private String price;
     private String userOwner;
+    private String documentID;
     private int id;
 
     public Announcement(){}
 
+    public Announcement(String titre, String type, String image, String branch,
+                        String phone, String description, String price, String userOwner, String documentID) {
+        this.titre = titre;
+        this.type = type;
+        this.image = image;
+        this.branch = branch;
+        this.phone = phone;
+        this.description = description;
+        this.price = price;
+        this.userOwner = userOwner;
+        this.documentID = documentID;
+
+    }
     public Announcement(String titre, String type, String image, String branch,
                         String phone, String description, String price, String userOwner) {
         this.titre = titre;
@@ -24,6 +38,14 @@ public class Announcement {
         this.price = price;
         this.userOwner = userOwner;
 
+    }
+
+    public String getDocumentID() {
+        return documentID;
+    }
+
+    public void setDocumentID(String documentID) {
+        this.documentID = documentID;
     }
 
     public int getId() {
