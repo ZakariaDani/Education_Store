@@ -101,7 +101,7 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
 
         public MyViewHolder(View itemView) {
             super(itemView);
-            title = itemView.findViewById(R.id.price);
+            title = itemView.findViewById(R.id.title);
             price = itemView.findViewById(R.id.price);
             image = itemView.findViewById(R.id.image);
             cardView = itemView.findViewById(R.id.carView);
