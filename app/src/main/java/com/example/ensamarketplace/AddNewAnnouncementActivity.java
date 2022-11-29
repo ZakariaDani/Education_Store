@@ -22,6 +22,7 @@ import com.example.ensamarketplace.model.User;
 import com.example.ensamarketplace.utils.BottomBar;
 import com.example.ensamarketplace.utils.Branch;
 import com.example.ensamarketplace.utils.BranchAdapter;
+import com.example.ensamarketplace.utils.Navigator;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -153,7 +154,10 @@ public class AddNewAnnouncementActivity extends AppCompatActivity {
 
         fireStore.collection("Announcement").add(announcement)
                 .addOnSuccessListener(
-                        (OnSuccessListener) o -> showMessage("Votre annonce a été creé avec succée")
+                        (OnSuccessListener) o -> {
+                            showMessage("Votre annonce a été creé avec succée");
+                            Navigator.navigateToHome(this);
+                        }
                 )
                 .addOnFailureListener(
                         e -> showMessage("notre serveur est en service pour le moment")
@@ -177,6 +181,7 @@ public class AddNewAnnouncementActivity extends AppCompatActivity {
         }
         return validForm;
     }
+
     public void getConnectedUser() {
         DocumentReference docRef = fireStore.collection("Users").document(firebaseAuth.getCurrentUser().getUid());
         docRef.get().addOnCompleteListener(task -> {
@@ -204,8 +209,6 @@ public class AddNewAnnouncementActivity extends AppCompatActivity {
         stepTwo.setVisibility(View.VISIBLE);
         stepOne.setClickable(false);
         stepTwo.setClickable(true);
-
-
     }
     public void  backToStepOne(View view){
         stepOne.animate().alpha(1f).setDuration(800);

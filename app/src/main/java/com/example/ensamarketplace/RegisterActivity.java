@@ -68,7 +68,6 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public void register(View view) {
-
         emailInput = email.getText().toString();
         nameInput = name.getText().toString();
         passwordInput = password.getText().toString();
