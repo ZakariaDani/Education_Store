@@ -1,5 +1,6 @@
 package com.example.ensamarketplace;
 
+import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -31,6 +32,8 @@ public class ShowAnnouncementDetailsActivity extends AppCompatActivity {
     private TextView title;
     private TextView description;
     private TextView phone;
+    private TextView type;
+    private TextView branch;
     private Announcement announcement;
     private final FirebaseFirestore firestore = FirebaseFirestore.getInstance();
 
@@ -49,6 +52,8 @@ public class ShowAnnouncementDetailsActivity extends AppCompatActivity {
         title = findViewById(R.id.ann_title);
         description = findViewById(R.id.ann_desc);
         phone = findViewById(R.id.ann_phone);
+        type = findViewById(R.id.ann_type);
+        branch = findViewById(R.id.ann_branch);
         getProductFromDB();
     }
 
@@ -67,9 +72,11 @@ public class ShowAnnouncementDetailsActivity extends AppCompatActivity {
                             document.get("userOwner").toString(), documentId);
                     setImageFromUri(announcement);
                     title.setText(announcement.getTitre());
-                    price.setText(announcement.getPrice());
+                    price.setText(announcement.getPrice()+ " DHS");
                     description.setText(announcement.getDescription());
                     phone.setText(announcement.getPhone());
+                    type.setText(announcement.getType());
+                    branch.setText(announcement.getBranch());
                     System.out.println(announcement);
                 } else {
                     showMessage("pas de document");
