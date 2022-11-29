@@ -36,9 +36,7 @@ public class Navigator {
         navigateTo(context,EditProfileActivity.class);
     }
 
-    public static void navigateToAddAnnoucement(AppCompatActivity context){
-        navigateTo(context,AddNewAnnouncementActivity.class);
+    public static void navigateToAddAnnoucement(AppCompatActivity context) {
+        navigateTo(context, AddNewAnnouncementActivity.class);
     }
-
-
 }

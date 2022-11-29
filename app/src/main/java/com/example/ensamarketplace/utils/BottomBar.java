@@ -10,7 +10,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class BottomBar {
     
     public static void setupEvents(BottomNavigationView nav, AppCompatActivity context){
-
         nav.setOnItemSelectedListener(
                 item -> {
                     switch (item.getItemId()){

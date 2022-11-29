@@ -33,7 +33,6 @@ public class LoginActivity extends AppCompatActivity {
     private TextView registerButton;
     private final FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,9 +72,16 @@ public class LoginActivity extends AppCompatActivity {
         Toast.makeText(this,errorMessage,Toast.LENGTH_SHORT).show();
     }
 
+    public void enableLoadingAnimation(){
+        loadingIcon.setVisibility(View.VISIBLE);
+    }
+
+    public void disableLoadingAnimation(){
+        loadingIcon.setVisibility(View.INVISIBLE);
+    }
+
     private boolean validateForm(){
         boolean validForm = false;
-
         if (emailInput.isEmpty() || passwordInput.isEmpty())  {
             showMessage("Tous les champs doivent etre remplis");
         } else if (!emailInput.matches("^[a-z].*@[a-z]+\\.[a-z]+$")) {
@@ -86,16 +92,9 @@ public class LoginActivity extends AppCompatActivity {
         else{
             validForm = true;
         }
-
         return validForm;
     }
 
 
-    public void enableLoadingAnimation(){
-        loadingIcon.setVisibility(View.VISIBLE);
-    }
 
-    public void disableLoadingAnimation(){
-        loadingIcon.setVisibility(View.INVISIBLE);
-    }
 }
