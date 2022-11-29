@@ -43,22 +43,28 @@ public class ShowAnnouncementDetailsActivity extends AppCompatActivity {
 
         getSupportActionBar().hide();
         setContentView(R.layout.activity_show_announcement_details);
-        String documentId = getIntent().getStringExtra("documentId");
-        getProductFromDB(documentId);
+
         image = findViewById(R.id.ann_image);
         price = findViewById(R.id.ann_price);
         title = findViewById(R.id.ann_title);
         description = findViewById(R.id.ann_desc);
         phone = findViewById(R.id.ann_phone);
+        getProductFromDB();
     }
 
-    public void getProductFromDB(String documentId) {
+    public void getProductFromDB() {
+        String documentId = getIntent().getStringExtra("documentId");
         DocumentReference docRef = firestore.collection("Announcement").document(documentId);
         docRef.get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 DocumentSnapshot document = task.getResult();
                 if (document.exists()) {
-                    announcement = new Announcement(document.get("titre").toString(), document.get("type").toString(), document.get("image") != null ? document.get("image").toString() : "", document.get("branch").toString(), document.get("phone").toString(), document.get("description").toString(), document.get("price").toString(), document.get("userOwner").toString(), documentId);
+                    announcement = new Announcement(document.get("titre").toString(),
+                            document.get("type").toString(),
+                            document.get("image") != null ? document.get("image").toString() : "",
+                            document.get("branch").toString(), document.get("phone").toString(),
+                            document.get("description").toString(), document.get("price").toString(),
+                            document.get("userOwner").toString(), documentId);
                     setImageFromUri(announcement);
                     title.setText(announcement.getTitre());
                     price.setText(announcement.getPrice());

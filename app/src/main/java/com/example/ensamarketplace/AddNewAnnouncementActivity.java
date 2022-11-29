@@ -68,29 +68,22 @@ public class AddNewAnnouncementActivity extends AppCompatActivity {
 
         getSupportActionBar().hide();
         setContentView(R.layout.activity_add_new_announcement);
-
         title = findViewById(R.id.title);
         branchSpinner = findViewById(R.id.branchSpinner);
         description = findViewById(R.id.description);
-
         price = findViewById(R.id.price);
         type = findViewById(R.id.type);
         uploadImage = findViewById(R.id.uploadImage);
-
         stepOne = findViewById(R.id.stepOne);
         stepTwo = findViewById(R.id.stepTwo);
         loadingIcon = findViewById(R.id.loadingIcon);
-
         submitButton = findViewById(R.id.submitButton);
         nextButton = findViewById(R.id.nextButton);
-
         BranchAdapter adapter = new BranchAdapter(getApplicationContext(), Branch.getAllBranches());
         branchSpinner.setAdapter(adapter);
         bottomNavigationView = findViewById(R.id.bottom_bar);
-
         stepTwo.setClickable(false);
         stepTwo.setVisibility(View.INVISIBLE);
-
         BottomBar.setupEvents(bottomNavigationView,this);
         getConnectedUser();
 

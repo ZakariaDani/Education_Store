@@ -20,7 +20,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class EditProfileActivity extends AppCompatActivity {
+    public class EditProfileActivity extends AppCompatActivity {
     EditText email;
     EditText name;
     EditText phone;
@@ -40,15 +40,12 @@ public class EditProfileActivity extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(
                 WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
         getSupportActionBar().hide();
         setContentView(R.layout.activity_edit_profile);
-
         email = findViewById(R.id.emaill);
         name = findViewById(R.id.name);
         branch = findViewById(R.id.type);
         phone = findViewById(R.id.phone);
-
         loadingIcon = findViewById(R.id.loadingIcon);
         bottomNavigationView = findViewById(R.id.bottom_bar);
         BottomBar.setupEvents(bottomNavigationView,this);
