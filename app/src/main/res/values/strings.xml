@@ -26,7 +26,7 @@
     <string name="auth_name_hint">Nom</string>
     <string name="auth_branch_hint">Veuillez entrer votre branch</string>
     <string name="auth_phone_hint">Numéro de téléphone</string>
-    <string name="vous_avez_pas_de_compte">Vous n avez pas de compte?</string>
+    <string name="vous_avez_pas_de_compte">Vous avez pas de compte?</string>
     <string name="upload_img">Ajouter une image</string>
     <string name="vous_avez_deja_un_compte">Vous avez déja un compte?</string>
     <string name="target_client">Les clients cibles</string>

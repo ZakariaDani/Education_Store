@@ -11,6 +11,7 @@ import com.example.ensamarketplace.ListAnnouncements;
 import com.example.ensamarketplace.LoginActivity;
 import com.example.ensamarketplace.R;
 import com.example.ensamarketplace.RegisterActivity;
+import com.example.ensamarketplace.ShowAnnouncementDetailsActivity;
 
 public class Navigator {
 
@@ -38,5 +39,9 @@ public class Navigator {
 
     public static void navigateToAddAnnoucement(AppCompatActivity context) {
         navigateTo(context, AddNewAnnouncementActivity.class);
+    }
+
+    public static void navigateToAnnoucementDetails(AppCompatActivity context) {
+        navigateTo(context, ShowAnnouncementDetailsActivity.class);
     }
 }

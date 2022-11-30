@@ -115,17 +115,12 @@ public class AddNewAnnouncementActivity extends AppCompatActivity {
     }
 
     public void addNewAnnouncement(View view) {
-//        this.overridePendingTransition();
         titreInput = title.getText().toString();
         descriptionInput = description.getText().toString();
         priceInput = price.getText().toString();
         branchInput = branches.get((int) branchSpinner.getSelectedItem());
         RadioButton radio = findViewById(type.getCheckedRadioButtonId());
         typeInput = radio.getText().toString();
-        System.out.println(new Announcement(titreInput, typeInput, imageInput,
-                branchInput, user.getPhone(), descriptionInput,
-                priceInput, firebaseAuth.getCurrentUser().getUid()));
-
         boolean validateForm = validateForm();
         if (validateForm) {
             enableLoadingAnimation();
