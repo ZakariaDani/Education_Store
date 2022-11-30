@@ -104,7 +104,7 @@ public class RegisterActivity extends AppCompatActivity {
         firestore.collection("Users").document(userID)
                 .set(user).addOnSuccessListener(
                         result->{showMessage("Votre compte a été creé avec succée");
-                            Navigator.navigateToHome(this);}
+                            Navigator.navigateToLogin(this);}
                 )
                .addOnFailureListener(
                 new OnFailureListener() {
