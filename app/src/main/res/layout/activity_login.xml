@@ -48,7 +48,7 @@
             android:layout_width="340dp"
             android:layout_height="51dp"
             android:layout_marginTop="76dp"
-            android:drawableLeft="@drawable/ic_baseline_person_outline_24"
+            android:drawableLeft="@drawable/ic_baseline_email_24"
             android:ems="10"
             android:hint="@string/auth_email_hint"
             android:inputType="textEmailAddress"
