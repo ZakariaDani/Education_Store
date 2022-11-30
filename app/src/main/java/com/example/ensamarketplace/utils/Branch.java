@@ -16,9 +16,23 @@ public class Branch implements Serializable {
         this.image = image;
     }
 
-    public Branch(){
+    public Branch(){}
 
+    public static List<Branch> getAllBranches(){
+        List<Branch> branches = new ArrayList<>();
+
+        Branch GI = new Branch("Genie informatique",R.drawable.ic_baseline_laptop_mac_24);
+        Branch GIL = new Branch("Genie industriel",R.drawable.ic_baseline_factory_24);
+        Branch GRT = new Branch("Genie réseaux et télécom",R.drawable.ic_baseline_wifi_tethering_24);
+        Branch GE = new Branch("Genie électrique",R.drawable.ic_baseline_electric_bolt_24);
+        Branch CP = new Branch("Cycle préparatoire",R.drawable.ic_baseline_school_24);
+        Branch ALL = new Branch("ENSA",R.drawable.ic_baseline_business_24);
+
+        branches.addAll(List.of(CP,GI,GIL,GRT,GE,ALL));
+
+        return branches;
     }
+
 
     public String getName() {
         return name;
@@ -34,21 +48,5 @@ public class Branch implements Serializable {
 
     public void setImage(int image) {
         this.image = image;
-    }
-
-    public static List<Branch> getAllBranches(){
-        List<Branch> branches = new ArrayList<>();
-
-        Branch GI = new Branch("Genie informatique",R.drawable.ic_baseline_laptop_mac_24);
-        Branch GIL = new Branch("Genie industriel",R.drawable.ic_baseline_factory_24);
-        Branch GRT = new Branch("Genie réseaux et télécom",R.drawable.ic_baseline_wifi_tethering_24);
-        Branch GE = new Branch("Genie électrique",R.drawable.ic_baseline_electric_bolt_24);
-        Branch CP = new Branch("Cycle préparatoire",R.drawable.ic_baseline_school_24);
-        Branch ALL = new Branch("ENSA",R.drawable.ic_baseline_business_24);
-
-
-        branches.addAll(List.of(CP,GI,GIL,GRT,GE,ALL));
-
-        return branches;
     }
 }
